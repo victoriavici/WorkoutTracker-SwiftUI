@@ -11,6 +11,13 @@
 		CA2D1CCD29EE8A7A00F7070D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CCC29EE8A7A00F7070D /* ContentView.swift */; };
 		CA2D1CCF29EE8A7C00F7070D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2D1CCE29EE8A7C00F7070D /* Assets.xcassets */; };
 		CA2D1CD229EE8A7C00F7070D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA2D1CD129EE8A7C00F7070D /* Preview Assets.xcassets */; };
+		CA2D1CDA29EE8E9B00F7070D /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CD929EE8E9B00F7070D /* WorkoutView.swift */; };
+		CA2D1CDC29EE90E200F7070D /* LogWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CDB29EE90E200F7070D /* LogWorkoutView.swift */; };
+		CA2D1CDE29EE999A00F7070D /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CDD29EE999A00F7070D /* StatisticsView.swift */; };
+		CA2D1CE029EE9B0800F7070D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CDF29EE9B0800F7070D /* AboutView.swift */; };
+		CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE129EECECC00F7070D /* SettingsView.swift */; };
+		CA2D1CE429EF042800F7070D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE329EF042800F7070D /* SettingViewModel.swift */; };
+		CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE529EF052D00F7070D /* SettingModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +27,13 @@
 		CA2D1CCE29EE8A7C00F7070D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA2D1CD129EE8A7C00F7070D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA2D1CD329EE8A7C00F7070D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA2D1CD929EE8E9B00F7070D /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		CA2D1CDB29EE90E200F7070D /* LogWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWorkoutView.swift; sourceTree = "<group>"; };
+		CA2D1CDD29EE999A00F7070D /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
+		CA2D1CDF29EE9B0800F7070D /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		CA2D1CE129EECECC00F7070D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CA2D1CE329EF042800F7070D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		CA2D1CE529EF052D00F7070D /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +66,15 @@
 		CA2D1CC729EE8A7A00F7070D /* WorkoutTracker */ = {
 			isa = PBXGroup;
 			children = (
-				CA2D1CC829EE8A7A00F7070D /* WorkoutTrackerApp.swift */,
 				CA2D1CCC29EE8A7A00F7070D /* ContentView.swift */,
+				CA2D1CC829EE8A7A00F7070D /* WorkoutTrackerApp.swift */,
+				CA2D1CD929EE8E9B00F7070D /* WorkoutView.swift */,
+				CA2D1CDB29EE90E200F7070D /* LogWorkoutView.swift */,
+				CA2D1CDD29EE999A00F7070D /* StatisticsView.swift */,
+				CA2D1CDF29EE9B0800F7070D /* AboutView.swift */,
+				CA2D1CE129EECECC00F7070D /* SettingsView.swift */,
+				CA2D1CE329EF042800F7070D /* SettingViewModel.swift */,
+				CA2D1CE529EF052D00F7070D /* SettingModel.swift */,
 				CA2D1CCE29EE8A7C00F7070D /* Assets.xcassets */,
 				CA2D1CD329EE8A7C00F7070D /* Info.plist */,
 				CA2D1CD029EE8A7C00F7070D /* Preview Content */,
@@ -139,8 +160,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */,
 				CA2D1CC929EE8A7A00F7070D /* WorkoutTrackerApp.swift in Sources */,
+				CA2D1CDE29EE999A00F7070D /* StatisticsView.swift in Sources */,
+				CA2D1CE429EF042800F7070D /* SettingViewModel.swift in Sources */,
+				CA2D1CDA29EE8E9B00F7070D /* WorkoutView.swift in Sources */,
 				CA2D1CCD29EE8A7A00F7070D /* ContentView.swift in Sources */,
+				CA2D1CE029EE9B0800F7070D /* AboutView.swift in Sources */,
+				CA2D1CDC29EE90E200F7070D /* LogWorkoutView.swift in Sources */,
+				CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

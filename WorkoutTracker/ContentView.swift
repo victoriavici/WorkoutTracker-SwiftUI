@@ -9,11 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     
+    init() {
+        UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .phone)
+    }
+    
     var body: some View {
         
-        GeometryReader { proxy in
+        TabView {
+            WorkoutView()
+                .tabItem {
+                    Image(systemName: "dumbbell")
+                }
+            StatisticsView()
+                .tabItem {
+                    Image(systemName: "chart.line.uptrend.xyaxis")
+                }
+            AboutView()
+                .tabItem {
+                    Image(systemName: "info.square")
+                }
+        }.tabViewStyle(.automatic)
             
-        }
     }
 }
 
