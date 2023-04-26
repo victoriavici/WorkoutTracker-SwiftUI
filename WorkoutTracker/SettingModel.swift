@@ -8,11 +8,15 @@
 import Foundation
 
 enum Weight: String {
+    
     case kg
     case lbs
+    
 }
 
 enum Distance: String {
+    
     case km
     case mi
+    
 }

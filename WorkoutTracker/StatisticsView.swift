@@ -23,4 +23,5 @@ struct StatisticsView_Previews: PreviewProvider {
     static var previews: some View {
         StatisticsView()
     }
+    
 }

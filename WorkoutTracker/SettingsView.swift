@@ -20,8 +20,7 @@ struct SettingsView: View {
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding()
             
-            Picker("Weight", selection:
-                    $settingsView.weight) {
+            Picker("Weight", selection: $settingsView.weight) {
                 Text("KG").tag(Weight.kg)
                 Text("LBS").tag(Weight.lbs)
             }
@@ -55,4 +54,5 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
     }
+    
 }

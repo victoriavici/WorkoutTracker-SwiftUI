@@ -31,6 +31,7 @@ struct WorkoutView: View {
                             .background(Color.blue)
                             .cornerRadius(3)
                     }
+                    .isDetailLink(false)
                     .padding(.horizontal, 20)
                     
                     
@@ -44,11 +45,13 @@ struct WorkoutView: View {
                 }
                 .listStyle(.plain)
             }
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitle("Workout", displayMode: .inline)
             .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .top)
             .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gearshape")
                 })
             .background(Color("pozadie"))
+            
         }
     }
     
@@ -80,10 +83,12 @@ private extension WorkoutView {
             .padding(.horizontal, 55)
         }
     }
+    
 }
 
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()
     }
+    
 }

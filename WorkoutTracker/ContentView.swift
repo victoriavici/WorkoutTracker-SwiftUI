@@ -28,13 +28,16 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "info.square")
                 }
-        }.tabViewStyle(.automatic)
-            
+        }
+        .tabViewStyle(.automatic)
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().preferredColorScheme(.light)
+        ContentView()
+            .preferredColorScheme(.light)
     }
+    
 }
