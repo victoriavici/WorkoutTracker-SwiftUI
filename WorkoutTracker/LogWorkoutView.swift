@@ -21,7 +21,7 @@ struct LogWorkoutView: View {
         
         VStack(alignment: .leading, spacing: 5) {
             
-            HStack(alignment: .center,spacing: 50) {
+            HStack(alignment: .center, spacing: 50) {
                 VStack {
                     Text("Time")
                     Text("xxxx")
@@ -37,10 +37,10 @@ struct LogWorkoutView: View {
             List {
                 ForEach(viewModel.allEx) { exercise in
                     
-                    header(exerciseName: exercise.name)
-                    ForEach(exercise.sets, id: \.self) { index in
-                        setRow(index: index)
-                            .id(index)
+                    header(exercise: exercise)
+                    ForEach(exercise.sets, id: \.set) { index in
+                        setRow(exercise: exercise, index: index.set)
+                            .id(index.set)
                     }
                     addSetButton(exercise: exercise)
                     Spacer()
@@ -71,10 +71,22 @@ struct LogWorkoutView: View {
 
 private extension LogWorkoutView {
     
-    func header(exerciseName: String) -> some View {
+    func header(exercise: Exercise) -> some View {
         VStack(alignment: .leading) {
-            Text(exerciseName)
-                .font(.headline)
+            HStack {
+                Text(exercise.name)
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
+                
+                Button {
+                    viewModel.removeExercise(exercise: exercise)
+                } label: {
+                    Image(systemName: "xmark")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .foregroundColor(.red)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
+            }
             
             HStack(spacing: 8) {
                 Text("SET")
@@ -92,9 +104,10 @@ private extension LogWorkoutView {
             }
         }
         .frame(height: 24)
+        .padding(.vertical)
     }
     
-    func setRow(index: Int) -> some View {
+    func setRow(exercise: Exercise, index: Int) -> some View {
         HStack(spacing: 8) {
             Text("\(Int(index))")
                 .frame(width: 48)
@@ -102,12 +115,14 @@ private extension LogWorkoutView {
             Text("-")
                 .frame(maxWidth: .infinity)
             
-            TextField("kg", value: $viewModel.weight, format: .number)
+            let exIndex = viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
+            
+            TextField("kg", value: $viewModel.allEx[exIndex].sets[index - 1].kg, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
             
-            TextField("reps", value: $viewModel.reps, format: .number)
+            TextField("reps", value: $viewModel.allEx[exIndex].sets[index - 1].reps, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
@@ -142,7 +157,7 @@ private extension LogWorkoutView {
                 .background(Color.blue)
                 .cornerRadius(3)
             
-            NavigationLink(destination: AddExerciseView(), label: {})
+            NavigationLink(destination: AddExerciseView { exercises in viewModel.addExercise(selected: exercises)}, label: {})
                 .opacity(0)
         }
     }
@@ -167,6 +182,8 @@ private extension LogWorkoutView {
             presentationMode.wrappedValue.dismiss()
         }
     }
+    
+
     
 }
 
