@@ -81,12 +81,15 @@ private extension LogWorkoutView {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
                 Button {
-                    viewModel.removeExercise(exercise: exercise)
+                    withAnimation() {
+                        viewModel.removeExercise(exercise: exercise)
+                    }
                 } label: {
                     Image(systemName: "xmark")
                         .frame(alignment: .trailing)
                         .foregroundColor(.red)
                 }
+                .frame(height: 44)
                 .buttonStyle(BorderlessButtonStyle())
             }
             
@@ -133,23 +136,26 @@ private extension LogWorkoutView {
     }
     
     func addSetButton(exercise: Exercise) -> some View {
-        
-        Button {
-            let lastIndex = viewModel.allEx.lastIndex(where: { $0.id == exercise.id }) ?? 0
-            withAnimation() {
-                viewModel.addSet(index: lastIndex)
+        VStack {
+            Button {
+                let lastIndex = viewModel.allEx.lastIndex(where: { $0.id == exercise.id }) ?? 0
+                withAnimation {
+                    viewModel.addSet(index: lastIndex)
+                }
+            } label: {
+                Text("+ ADD SET")
+                    .frame(maxWidth: .infinity, maxHeight: 8)
+                    .font(.title3)
+                    .foregroundColor(.black)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 20)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(3)
             }
-        } label: {
-            Text("+ ADD SET")
-                .frame(maxWidth: .infinity, maxHeight: 8)
-                .font(.title3)
-                .foregroundColor(.black)
-                .padding(.vertical, 12)
-                .padding(.horizontal, 20)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(3)
         }
+        .frame(height: 44) 
     }
+
     
     func addExercise() -> some View {
         ZStack {
