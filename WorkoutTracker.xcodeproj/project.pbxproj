@@ -26,7 +26,8 @@
 		CAD8CEF129F7D00D0015DBFC /* LogWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */; };
 		CAD8CEF329F9450C0015DBFC /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */; };
 		CADE3E1D29FAA7D6003FC992 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */; };
-		CADE3E1F29FAC261003FC992 /* ExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E1E29FAC261003FC992 /* ExerciseData.swift */; };
+		CADE3E2129FC369E003FC992 /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */; };
+		CADE3E2329FCE5D6003FC992 /* CreateExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +50,8 @@
 		CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWorkoutViewModel.swift; sourceTree = "<group>"; };
 		CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
 		CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
-		CADE3E1E29FAC261003FC992 /* ExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseData.swift; sourceTree = "<group>"; };
+		CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
+		CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +88,6 @@
 			children = (
 				CA2D1CCC29EE8A7A00F7070D /* ContentView.swift */,
 				CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */,
-				CADE3E1E29FAC261003FC992 /* ExerciseData.swift */,
 				CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */,
 				CA2D1CC829EE8A7A00F7070D /* WorkoutTrackerApp.swift */,
 				CA2D1CD929EE8E9B00F7070D /* WorkoutView.swift */,
@@ -97,6 +98,8 @@
 				CA2D1CE129EECECC00F7070D /* SettingsView.swift */,
 				CA2D1CE329EF042800F7070D /* SettingViewModel.swift */,
 				CA2D1CE529EF052D00F7070D /* SettingModel.swift */,
+				CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */,
+				CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */,
 				CAD8CEE929F7B5800015DBFC /* models */,
 				CA2D1CCE29EE8A7C00F7070D /* Assets.xcassets */,
 				CA2D1CD329EE8A7C00F7070D /* Info.plist */,
@@ -200,8 +203,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADE3E2329FCE5D6003FC992 /* CreateExerciseViewModel.swift in Sources */,
 				CAD8CEED29F7C19F0015DBFC /* ExerciseSet.swift in Sources */,
 				CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */,
+				CADE3E2129FC369E003FC992 /* CreateExerciseView.swift in Sources */,
 				CA2D1CC929EE8A7A00F7070D /* WorkoutTrackerApp.swift in Sources */,
 				CA2D1CDE29EE999A00F7070D /* StatisticsView.swift in Sources */,
 				CAD8CEF129F7D00D0015DBFC /* LogWorkoutViewModel.swift in Sources */,
@@ -215,7 +220,6 @@
 				CA2D1CDC29EE90E200F7070D /* LogWorkoutView.swift in Sources */,
 				CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */,
 				CAD8CEEF29F7C5780015DBFC /* Workout.swift in Sources */,
-				CADE3E1F29FAC261003FC992 /* ExerciseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,11 +16,7 @@ struct WorkoutView: View {
         
         NavigationView {
             VStack {
-                VStack(spacing: 10) {
-                    Text("Quick Start")
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                        .padding()
-                    
+                VStack() {
                     NavigationLink(destination: LogWorkoutView()) {
                         Text("Start an empty workout")
                             .frame(maxWidth: .infinity, maxHeight: 20)
@@ -33,11 +29,13 @@ struct WorkoutView: View {
                     }
                     .isDetailLink(false)
                     .padding(.horizontal, 20)
+                    .padding(.vertical)
                     
                     
                     Text("History")
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                        .padding()
+                        .font(.title3.bold())
+                        .padding(.horizontal)
                     
                 }
                 List(0..<10) { item in

@@ -9,9 +9,14 @@ import SwiftUI
 
 struct AddExerciseView: View {
     
+    // MARK: - Variables
+
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel = AddExerciseViewModel()
+    
     let action: ([Exercises]) -> Void
+    
+    // MARK: - Body
     
     var body: some View {
         VStack {
@@ -35,6 +40,7 @@ struct AddExerciseView: View {
                 }
                
             }
+            .searchable(text: $viewModel.searchText)
             .listStyle(.plain)
             .listRowSeparator(.hidden)
 
@@ -44,10 +50,15 @@ struct AddExerciseView: View {
             }
         }
         .navigationBarTitle("Add exercise")
+        .navigationBarItems(trailing: NavigationLink(destination: CreateExerciseView { name in viewModel.createExercise(name: name)}) {
+            Text("Create")
+            })
         .padding()
     }
     
 }
+
+// MARK: - Components
 
 extension AddExerciseView {
     

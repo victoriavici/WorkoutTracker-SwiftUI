@@ -17,9 +17,15 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         allEx[index].sets.append((allEx[index].sets.count + 1, 0.0, 0))
     }
     
-    func deleteSet(exercise: Exercise, index: Int) {
+    func deleteSet(exercise: Exercise, index: IndexSet) {
         let exIndex = allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
-        allEx[exIndex].sets.remove(at: index)
+        allEx[exIndex].sets.remove(atOffsets: index)
+        
+        let set = allEx[exIndex].sets.enumerated().map { index, tuple in
+            return (index + 1, tuple.kg, tuple.reps)
+        }
+        
+        allEx[exIndex].sets = set
         
     }
     
@@ -44,6 +50,7 @@ struct Exercise: Identifiable {
     }
     var name: String
     var sets: [(set: Int, kg: Double, reps: Int)] = [(1, 0.0, 0), (2, 0.0, 0)]
+    
 }
 
 

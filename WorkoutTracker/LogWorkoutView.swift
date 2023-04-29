@@ -38,9 +38,13 @@ struct LogWorkoutView: View {
                 ForEach(viewModel.allEx) { exercise in
                     
                     header(exercise: exercise)
+                    
                     ForEach(exercise.sets, id: \.set) { index in
                         setRow(exercise: exercise, index: index.set)
                             .id(index.set)
+                    }
+                    .onDelete { index in
+                        viewModel.deleteSet(exercise: exercise, index: index)
                     }
                     addSetButton(exercise: exercise)
                     Spacer()
@@ -63,9 +67,7 @@ struct LogWorkoutView: View {
         .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("Log workout", displayMode: .inline)
     }
-    
 }
-
 
 // MARK: - Components
 
@@ -73,19 +75,19 @@ private extension LogWorkoutView {
     
     func header(exercise: Exercise) -> some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(spacing: 150) {
                 Text(exercise.name)
                     .font(.headline)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
-                
                 Button {
                     viewModel.removeExercise(exercise: exercise)
                 } label: {
                     Image(systemName: "xmark")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(alignment: .trailing)
                         .foregroundColor(.red)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
+                .buttonStyle(BorderlessButtonStyle())
             }
             
             HStack(spacing: 8) {
@@ -131,9 +133,12 @@ private extension LogWorkoutView {
     }
     
     func addSetButton(exercise: Exercise) -> some View {
+        
         Button {
             let lastIndex = viewModel.allEx.lastIndex(where: { $0.id == exercise.id }) ?? 0
-            viewModel.addSet(index: lastIndex)
+            withAnimation() {
+                viewModel.addSet(index: lastIndex)
+            }
         } label: {
             Text("+ ADD SET")
                 .frame(maxWidth: .infinity, maxHeight: 8)
@@ -162,7 +167,8 @@ private extension LogWorkoutView {
         }
     }
     
-    func addDiscardAndFinishButton(text: String, action: @escaping () -> Void) -> some View {
+    func addDiscardAndFinishButton(text: String, action: @escaping () -> Void)
+    -> some View {
         VStack {
             Button {
                 action()
@@ -175,15 +181,13 @@ private extension LogWorkoutView {
                     .padding(.horizontal, 20)
                     .background(Color.white)
                     .overlay(RoundedRectangle(cornerRadius: 3).stroke(Color.gray.opacity(0.3)).foregroundColor(.white))
-                    .cornerRadius(3)
+                
             }
         }
         .onTapGesture {
             presentationMode.wrappedValue.dismiss()
         }
     }
-    
-
     
 }
 
