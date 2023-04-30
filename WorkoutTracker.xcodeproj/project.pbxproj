@@ -28,6 +28,7 @@
 		CADE3E1D29FAA7D6003FC992 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */; };
 		CADE3E2129FC369E003FC992 /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */; };
 		CADE3E2329FCE5D6003FC992 /* CreateExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */; };
+		CADE3E2629FEDB32003FC992 /* GoodPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = CADE3E2529FEDB32003FC992 /* GoodPersistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADE3E2629FEDB32003FC992 /* GoodPersistence in Frameworks */,
 				CAD8CEE729F5B2960015DBFC /* RealmSwift in Frameworks */,
 				CAD8CEE529F5B2960015DBFC /* Realm in Frameworks */,
 			);
@@ -145,6 +147,7 @@
 			packageProductDependencies = (
 				CAD8CEE429F5B2960015DBFC /* Realm */,
 				CAD8CEE629F5B2960015DBFC /* RealmSwift */,
+				CADE3E2529FEDB32003FC992 /* GoodPersistence */,
 			);
 			productName = WorkoutTracker;
 			productReference = CA2D1CC529EE8A7A00F7070D /* WorkoutTracker.app */;
@@ -176,6 +179,7 @@
 			mainGroup = CA2D1CBC29EE8A7A00F7070D;
 			packageReferences = (
 				CAD8CEE329F5B2960015DBFC /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */,
 			);
 			productRefGroup = CA2D1CC629EE8A7A00F7070D /* Products */;
 			projectDirPath = "";
@@ -436,6 +440,14 @@
 				kind = branch;
 			};
 		};
+		CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GoodRequest/GoodPersistence";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -448,6 +460,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CAD8CEE329F5B2960015DBFC /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		CADE3E2529FEDB32003FC992 /* GoodPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */;
+			productName = GoodPersistence;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

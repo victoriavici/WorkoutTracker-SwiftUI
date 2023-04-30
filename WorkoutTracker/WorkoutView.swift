@@ -27,10 +27,8 @@ struct WorkoutView: View {
                             .background(Color.blue)
                             .cornerRadius(3)
                     }
-                    //.isDetailLink(false)
                     .padding(.horizontal, 20)
                     .padding(.vertical)
-                    
                     
                     Text("History")
                         .frame(maxWidth: .infinity, alignment: .topLeading)

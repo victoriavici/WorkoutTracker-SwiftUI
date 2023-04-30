@@ -11,10 +11,12 @@ import Combine
 
 class LogWorkoutViewModel: ObservableObject, Identifiable {
     
+    @Published var inWorkout = false
     var timer: AnyCancellable?
     @Published var time: String = "00:00:00"
-    @Published var startTime = Date()
+    @Published var startTime: Date = Date()
     @Published var currentTime: Date = Date()
+    @Published var endTime = Date()
     @Published var sets: Int = 0
     @Published var volume: Double = 0.0
     @Published var allEx: [Exercise] = [] {
@@ -23,7 +25,15 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
             countVolume()
         }
     }
-
+    
+    func setInWorkout() {
+        inWorkout.toggle()
+    }
+    
+    func setStartTime() {
+        startTime = Date()
+    }
+    
     func stopTimer() {
         timer?.cancel()
     }
@@ -82,6 +92,10 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         if let index = allEx.firstIndex(where: {exercise.id == $0.id}) {
             allEx.remove(at: index)
         }
+    }
+    
+    func clearWorkout() {
+        allEx.removeAll()
     }
     
 }

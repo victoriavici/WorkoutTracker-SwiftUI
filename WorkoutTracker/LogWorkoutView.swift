@@ -74,6 +74,11 @@ struct LogWorkoutView: View {
         .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("Log workout", displayMode: .inline)
         .onAppear {
+            if !viewModel.inWorkout {
+                viewModel.setInWorkout()
+                viewModel.setStartTime()
+            }
+            
             viewModel.updateTime()
             viewModel.timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common)
                 .autoconnect()
@@ -196,6 +201,14 @@ private extension LogWorkoutView {
         VStack {
             Button {
                 action()
+                viewModel.setInWorkout()
+                if text == "Finish" {
+                    //akcia ulozenia
+                } else {
+                    viewModel.clearWorkout()
+                }
+                presentationMode.wrappedValue.dismiss()
+
             } label: {
                 Text(text)
                     .frame(maxWidth: .infinity, maxHeight: 8)
@@ -208,9 +221,8 @@ private extension LogWorkoutView {
                 
             }
         }
-        .onTapGesture {
-            presentationMode.wrappedValue.dismiss()
-        }
+        .buttonStyle(BorderlessButtonStyle())
+        
     }
     
 }
