@@ -6,12 +6,55 @@
 //
 
 import Foundation
+import Combine
+
 
 class LogWorkoutViewModel: ObservableObject, Identifiable {
     
-    @Published var weight = 1
-    @Published var reps = 1
-    @Published var allEx: [Exercise] = []
+    var timer: AnyCancellable?
+    @Published var time: String = "00:00:00"
+    @Published var startTime = Date()
+    @Published var currentTime: Date = Date()
+    @Published var sets: Int = 0
+    @Published var volume: Double = 0.0
+    @Published var allEx: [Exercise] = [] {
+        didSet{
+            countSets()
+            countVolume()
+        }
+    }
+
+    func stopTimer() {
+        timer?.cancel()
+    }
+  
+    func updateTime() {
+        currentTime = Date()
+        time = timeToString(interval: currentTime.timeIntervalSince(startTime))
+    }
+
+    private func timeToString(interval: Double) -> String {
+        let hours = Int(interval / 3600)
+        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+        
+    private func countSets() {
+        sets = 0
+        self.allEx.forEach { exercise in
+            self.sets += exercise.sets.count
+        }
+    }
+    
+    private func countVolume() {
+        volume = 0.0
+        self.allEx.forEach { exercise in
+            exercise.sets.forEach { sets in
+                volume += Double(sets.reps) * sets.kg
+            }
+        }
+    }
     
     func addSet(index: Int) {
         allEx[index].sets.append((allEx[index].sets.count + 1, 0.0, 0))
@@ -21,11 +64,11 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         let exIndex = allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
         allEx[exIndex].sets.remove(atOffsets: index)
         
-        let set = allEx[exIndex].sets.enumerated().map { index, tuple in
+        let newSets = allEx[exIndex].sets.enumerated().map { index, tuple in
             return (index + 1, tuple.kg, tuple.reps)
         }
-        
-        allEx[exIndex].sets = set
+    
+        allEx[exIndex].sets = newSets
         
     }
     

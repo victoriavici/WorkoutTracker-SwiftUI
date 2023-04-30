@@ -15,21 +15,28 @@ struct LogWorkoutView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel = LogWorkoutViewModel()
     
+    
     // MARK: - Body
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 5) {
             
-            HStack(alignment: .center, spacing: 50) {
+            HStack(alignment: .center, spacing: 40) {
                 VStack {
                     Text("Time")
-                    Text("xxxx")
+                    Text(String(viewModel.time))
                 }
-                .padding(.vertical)
+                
+                .padding()
                 VStack {
                     Text("Volume")
-                    Text("xxxx")
+                    Text(String(viewModel.volume))
+                }
+                .padding()
+                VStack {
+                    Text("Sets")
+                    Text(String(viewModel.sets))
                 }
                 .padding()
             }
@@ -66,6 +73,17 @@ struct LogWorkoutView: View {
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("Log workout", displayMode: .inline)
+        .onAppear {
+            viewModel.updateTime()
+            viewModel.timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common)
+                .autoconnect()
+                .sink { _ in
+                    viewModel.updateTime()
+                }
+        }
+        .onDisappear {
+            viewModel.stopTimer()
+        }
     }
 }
 
@@ -153,9 +171,9 @@ private extension LogWorkoutView {
                     .cornerRadius(3)
             }
         }
-        .frame(height: 44) 
+        .frame(height: 44)
     }
-
+    
     
     func addExercise() -> some View {
         ZStack {

@@ -27,7 +27,7 @@ struct WorkoutView: View {
                             .background(Color.blue)
                             .cornerRadius(3)
                     }
-                    .isDetailLink(false)
+                    //.isDetailLink(false)
                     .padding(.horizontal, 20)
                     .padding(.vertical)
                     
@@ -49,7 +49,7 @@ struct WorkoutView: View {
             .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gearshape")
                 })
             .background(Color("pozadie"))
-            
+          
         }
     }
     
