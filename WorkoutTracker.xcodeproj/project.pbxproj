@@ -18,17 +18,15 @@
 		CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE129EECECC00F7070D /* SettingsView.swift */; };
 		CA2D1CE429EF042800F7070D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE329EF042800F7070D /* SettingViewModel.swift */; };
 		CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE529EF052D00F7070D /* SettingModel.swift */; };
-		CAD8CEE529F5B2960015DBFC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CAD8CEE429F5B2960015DBFC /* Realm */; };
-		CAD8CEE729F5B2960015DBFC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CAD8CEE629F5B2960015DBFC /* RealmSwift */; };
-		CAD8CEEB29F7B5D40015DBFC /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEEA29F7B5D40015DBFC /* Exercise.swift */; };
-		CAD8CEED29F7C19F0015DBFC /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEEC29F7C19F0015DBFC /* ExerciseSet.swift */; };
-		CAD8CEEF29F7C5780015DBFC /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEEE29F7C5780015DBFC /* Workout.swift */; };
 		CAD8CEF129F7D00D0015DBFC /* LogWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */; };
 		CAD8CEF329F9450C0015DBFC /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */; };
 		CADE3E1D29FAA7D6003FC992 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */; };
 		CADE3E2129FC369E003FC992 /* CreateExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */; };
 		CADE3E2329FCE5D6003FC992 /* CreateExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */; };
 		CADE3E2629FEDB32003FC992 /* GoodPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = CADE3E2529FEDB32003FC992 /* GoodPersistence */; };
+		CADE3E2829FF9C87003FC992 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2729FF9C87003FC992 /* CacheManager.swift */; };
+		CADE3E2A29FFA530003FC992 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2929FFA530003FC992 /* Constants.swift */; };
+		CADE3E2C29FFD4BE003FC992 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E2B29FFD4BE003FC992 /* WorkoutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,14 +43,14 @@
 		CA2D1CE129EECECC00F7070D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CA2D1CE329EF042800F7070D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		CA2D1CE529EF052D00F7070D /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
-		CAD8CEEA29F7B5D40015DBFC /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		CAD8CEEC29F7C19F0015DBFC /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
-		CAD8CEEE29F7C5780015DBFC /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWorkoutViewModel.swift; sourceTree = "<group>"; };
 		CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
 		CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
 		CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseView.swift; sourceTree = "<group>"; };
 		CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciseViewModel.swift; sourceTree = "<group>"; };
+		CADE3E2729FF9C87003FC992 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		CADE3E2929FFA530003FC992 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CADE3E2B29FFD4BE003FC992 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +59,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADE3E2629FEDB32003FC992 /* GoodPersistence in Frameworks */,
-				CAD8CEE729F5B2960015DBFC /* RealmSwift in Frameworks */,
-				CAD8CEE529F5B2960015DBFC /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +89,7 @@
 				CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */,
 				CA2D1CC829EE8A7A00F7070D /* WorkoutTrackerApp.swift */,
 				CA2D1CD929EE8E9B00F7070D /* WorkoutView.swift */,
+				CADE3E2B29FFD4BE003FC992 /* WorkoutViewModel.swift */,
 				CA2D1CDB29EE90E200F7070D /* LogWorkoutView.swift */,
 				CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */,
 				CA2D1CDD29EE999A00F7070D /* StatisticsView.swift */,
@@ -102,10 +99,11 @@
 				CA2D1CE529EF052D00F7070D /* SettingModel.swift */,
 				CADE3E2029FC369E003FC992 /* CreateExerciseView.swift */,
 				CADE3E2229FCE5D6003FC992 /* CreateExerciseViewModel.swift */,
-				CAD8CEE929F7B5800015DBFC /* models */,
 				CA2D1CCE29EE8A7C00F7070D /* Assets.xcassets */,
 				CA2D1CD329EE8A7C00F7070D /* Info.plist */,
 				CA2D1CD029EE8A7C00F7070D /* Preview Content */,
+				CADE3E2729FF9C87003FC992 /* CacheManager.swift */,
+				CADE3E2929FFA530003FC992 /* Constants.swift */,
 			);
 			path = WorkoutTracker;
 			sourceTree = "<group>";
@@ -116,16 +114,6 @@
 				CA2D1CD129EE8A7C00F7070D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		CAD8CEE929F7B5800015DBFC /* models */ = {
-			isa = PBXGroup;
-			children = (
-				CAD8CEEA29F7B5D40015DBFC /* Exercise.swift */,
-				CAD8CEEC29F7C19F0015DBFC /* ExerciseSet.swift */,
-				CAD8CEEE29F7C5780015DBFC /* Workout.swift */,
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,8 +133,6 @@
 			);
 			name = WorkoutTracker;
 			packageProductDependencies = (
-				CAD8CEE429F5B2960015DBFC /* Realm */,
-				CAD8CEE629F5B2960015DBFC /* RealmSwift */,
 				CADE3E2529FEDB32003FC992 /* GoodPersistence */,
 			);
 			productName = WorkoutTracker;
@@ -178,7 +164,6 @@
 			);
 			mainGroup = CA2D1CBC29EE8A7A00F7070D;
 			packageReferences = (
-				CAD8CEE329F5B2960015DBFC /* XCRemoteSwiftPackageReference "realm-swift" */,
 				CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */,
 			);
 			productRefGroup = CA2D1CC629EE8A7A00F7070D /* Products */;
@@ -208,22 +193,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADE3E2329FCE5D6003FC992 /* CreateExerciseViewModel.swift in Sources */,
-				CAD8CEED29F7C19F0015DBFC /* ExerciseSet.swift in Sources */,
+				CADE3E2A29FFA530003FC992 /* Constants.swift in Sources */,
 				CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */,
+				CADE3E2C29FFD4BE003FC992 /* WorkoutViewModel.swift in Sources */,
 				CADE3E2129FC369E003FC992 /* CreateExerciseView.swift in Sources */,
 				CA2D1CC929EE8A7A00F7070D /* WorkoutTrackerApp.swift in Sources */,
 				CA2D1CDE29EE999A00F7070D /* StatisticsView.swift in Sources */,
 				CAD8CEF129F7D00D0015DBFC /* LogWorkoutViewModel.swift in Sources */,
 				CA2D1CE429EF042800F7070D /* SettingViewModel.swift in Sources */,
 				CA2D1CDA29EE8E9B00F7070D /* WorkoutView.swift in Sources */,
-				CAD8CEEB29F7B5D40015DBFC /* Exercise.swift in Sources */,
+				CADE3E2829FF9C87003FC992 /* CacheManager.swift in Sources */,
 				CADE3E1D29FAA7D6003FC992 /* AddExerciseViewModel.swift in Sources */,
 				CA2D1CCD29EE8A7A00F7070D /* ContentView.swift in Sources */,
 				CA2D1CE029EE9B0800F7070D /* AboutView.swift in Sources */,
 				CAD8CEF329F9450C0015DBFC /* AddExerciseView.swift in Sources */,
 				CA2D1CDC29EE90E200F7070D /* LogWorkoutView.swift in Sources */,
 				CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */,
-				CAD8CEEF29F7C5780015DBFC /* Workout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,14 +417,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CAD8CEE329F5B2960015DBFC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GoodRequest/GoodPersistence";
@@ -451,16 +428,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CAD8CEE429F5B2960015DBFC /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAD8CEE329F5B2960015DBFC /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		CAD8CEE629F5B2960015DBFC /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAD8CEE329F5B2960015DBFC /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		CADE3E2529FEDB32003FC992 /* GoodPersistence */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */;

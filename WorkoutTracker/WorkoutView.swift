@@ -10,6 +10,8 @@ import os
 
 struct WorkoutView: View {
     
+    @ObservedObject var viewModel = WorkoutViewModel()
+    
     // MARK: - Body
 
     var body: some View {
@@ -30,14 +32,16 @@ struct WorkoutView: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical)
                     
-                    Text("History")
+                    Text("History (\(viewModel.workouts.count))")
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                         .font(.title3.bold())
                         .padding(.horizontal)
                     
                 }
-                List(0..<10) { item in
-                    historyLog()
+                List() {
+                    ForEach (viewModel.workouts) { workout in
+                        historyLog(workout: workout)
+                    }
                 }
                 .listStyle(.plain)
             }
@@ -57,26 +61,26 @@ struct WorkoutView: View {
 
 private extension WorkoutView {
   
-    func historyLog() -> some View {
+    func historyLog(workout: Workout) -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("DateTime").font(.subheadline)
-            Text("Name")
+            Text(viewModel.formatter(date: workout.startTime)).font(.subheadline)
+            Text(viewModel.getName(workout: workout)).bold()
             
-            HStack(alignment: .center,spacing: 52) {
+            HStack(alignment: .center, spacing: 32) {
                     VStack {
                         Text("Time")
-                        Text("xxxx")
-                    }
+                        Text(workout.time)
+                    }.frame(maxWidth: .infinity)
                     VStack {
                         Text("Volume")
-                        Text("xxxx")
-                    }
+                        Text(String(viewModel.countVolume(workout: workout)))
+                    }.frame(maxWidth: .infinity)
                     VStack {
                         Text("Sets")
-                        Text("xxxx")
-                    }
+                        Text(String(viewModel.countSets(workout: workout)))
+                    }.frame(maxWidth: .infinity)
                 }
-            .padding(.horizontal, 55)
+            .padding(.horizontal, 24)
         }
     }
     

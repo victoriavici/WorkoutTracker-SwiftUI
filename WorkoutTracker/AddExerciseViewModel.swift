@@ -50,7 +50,7 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
 }
 
 
-struct Exercises: Identifiable {
+struct Exercises: Codable, Identifiable {
    
     var id: String {
         name

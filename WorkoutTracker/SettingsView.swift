@@ -19,20 +19,22 @@ struct SettingsView: View {
             Text("Weight")
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding()
-            
             Picker("Weight", selection: $settingsView.weight) {
-                Text("KG").tag(Weight.kg)
-                Text("LBS").tag(Weight.lbs)
+                Text("KG")
+                    .tag(Weight.kg)
+                Text("LBS")
+                    .tag(Weight.lbs)
             }
             .pickerStyle(.segmented)
             
-        
             Text("Distance")
                 .frame(maxWidth: .infinity, alignment: .topLeading)
                 .padding()
             Picker("Distance", selection: $settingsView.distance) {
-                Text("KILOMETERS").tag(Distance.km)
-                Text("MILES").tag(Distance.mi)
+                Text("KILOMETERS")
+                    .tag(Distance.km)
+                Text("MILES")
+                    .tag(Distance.mi)
             }
             .pickerStyle(.segmented)
             

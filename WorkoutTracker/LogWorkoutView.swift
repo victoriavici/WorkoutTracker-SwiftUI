@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct LogWorkoutView: View {
     
@@ -22,25 +21,27 @@ struct LogWorkoutView: View {
         
         VStack(alignment: .leading, spacing: 5) {
             
-            HStack(alignment: .center, spacing: 40) {
+            HStack(alignment: .center, spacing: 28) {
                 VStack {
                     Text("Time")
                     Text(String(viewModel.time))
                 }
-                
+                .frame(width: 72)
                 .padding()
                 VStack {
                     Text("Volume")
                     Text(String(viewModel.volume))
                 }
+                .frame(width: 72)
                 .padding()
                 VStack {
                     Text("Sets")
                     Text(String(viewModel.sets))
                 }
+                .frame(width: 72)
                 .padding()
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 24)
             List {
                 ForEach(viewModel.allEx) { exercise in
                     
@@ -124,7 +125,7 @@ private extension LogWorkoutView {
                 Text("PREVIOUS")
                     .frame(maxWidth: .infinity)
                 
-                Text("KG")
+                Text(viewModel.isWeightInKg ? "KG" : "LBS")
                     .frame(maxWidth: .infinity)
                 
                 Text("REPS")
@@ -143,9 +144,9 @@ private extension LogWorkoutView {
             Text("-")
                 .frame(maxWidth: .infinity)
             
-            let exIndex = viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
+            let exIndex = getIndexExercise(exercise: exercise)
             
-            TextField("kg", value: $viewModel.allEx[exIndex].sets[index - 1].kg, format: .number)
+            TextField(viewModel.isWeightInKg ? "kg" : "lbs", value: $viewModel.allEx[exIndex].sets[index - 1].weight, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
@@ -161,9 +162,8 @@ private extension LogWorkoutView {
     func addSetButton(exercise: Exercise) -> some View {
         VStack {
             Button {
-                let lastIndex = viewModel.allEx.lastIndex(where: { $0.id == exercise.id }) ?? 0
                 withAnimation {
-                    viewModel.addSet(index: lastIndex)
+                    viewModel.addSet(index: getIndexExercise(exercise: exercise))
                 }
             } label: {
                 Text("+ ADD SET")
@@ -196,17 +196,16 @@ private extension LogWorkoutView {
         }
     }
     
-    func addDiscardAndFinishButton(text: String, action: @escaping () -> Void)
-    -> some View {
+    func addDiscardAndFinishButton(text: String, action: @escaping () -> Void) -> some View {
         VStack {
             Button {
                 action()
                 viewModel.setInWorkout()
                 if text == "Finish" {
-                    //akcia ulozenia
-                } else {
-                    viewModel.clearWorkout()
+                    viewModel.saveWorkout()
                 }
+                viewModel.clearWorkout()
+                
                 presentationMode.wrappedValue.dismiss()
 
             } label: {
@@ -223,6 +222,11 @@ private extension LogWorkoutView {
         }
         .buttonStyle(BorderlessButtonStyle())
         
+    }
+ 
+    func getIndexExercise(exercise: Exercise) -> Int {
+        return viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
+
     }
     
 }

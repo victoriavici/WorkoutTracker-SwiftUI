@@ -35,7 +35,8 @@ struct CreateExerciseView: View {
                     .background(Color.blue)
                     .cornerRadius(3)
             }
-        }.navigationTitle("Create exercise")
+        }
+        .navigationTitle("Create exercise")
     }
 }
 

@@ -10,4 +10,5 @@ import Foundation
 class CreateExerciseViewModel: ObservableObject {
     
     @Published var name: String = ""
+    
 }

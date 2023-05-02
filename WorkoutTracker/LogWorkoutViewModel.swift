@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-
 class LogWorkoutViewModel: ObservableObject, Identifiable {
     
     @Published var inWorkout = false
@@ -25,6 +24,16 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
             countVolume()
         }
     }
+    @Published var isWeightInKg = CacheManager.shared.isWeightInKg
+    
+    init() {
+        subscribe()
+    }
+    
+    func subscribe() {
+        CacheManager.shared.isWeightInKgPublisher
+            .assign(to: &$isWeightInKg)
+    }
     
     func setInWorkout() {
         inWorkout.toggle()
@@ -37,19 +46,19 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     func stopTimer() {
         timer?.cancel()
     }
-  
+    
     func updateTime() {
         currentTime = Date()
         time = timeToString(interval: currentTime.timeIntervalSince(startTime))
     }
-
+    
     private func timeToString(interval: Double) -> String {
         let hours = Int(interval / 3600)
         let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
         let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
-        
+    
     private func countSets() {
         sets = 0
         self.allEx.forEach { exercise in
@@ -61,13 +70,14 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         volume = 0.0
         self.allEx.forEach { exercise in
             exercise.sets.forEach { sets in
-                volume += Double(sets.reps) * sets.kg
+                volume += Double(sets.reps) * sets.weight
             }
         }
     }
     
     func addSet(index: Int) {
-        allEx[index].sets.append((allEx[index].sets.count + 1, 0.0, 0))
+        let newSet = Exercise.Set(set: (allEx[index].sets.count + 1), weight: 0.0, reps: 0)
+        allEx[index].sets.append(newSet)
     }
     
     func deleteSet(exercise: Exercise, index: IndexSet) {
@@ -75,9 +85,8 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         allEx[exIndex].sets.remove(atOffsets: index)
         
         let newSets = allEx[exIndex].sets.enumerated().map { index, tuple in
-            return (index + 1, tuple.kg, tuple.reps)
+            return Exercise.Set(set: index + 1, weight: tuple.weight, reps: tuple.reps)
         }
-    
         allEx[exIndex].sets = newSets
         
     }
@@ -98,17 +107,52 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         allEx.removeAll()
     }
     
+    func saveWorkout() {
+        CacheManager.shared.add(workout: Workout(startTime: startTime, time: time, allEx: allEx))
+    }
+    
 }
 
-struct Exercise: Identifiable {
-   
+struct Exercise: Codable, Identifiable {
+    
     var id: String {
         name
     }
     var name: String
-    var sets: [(set: Int, kg: Double, reps: Int)] = [(1, 0.0, 0), (2, 0.0, 0)]
+    var sets: [Set] = [Set(set: 1, weight: 0.0, reps: 0), Set(set: 2, weight: 0.0, reps: 0)]
+    
+    init(name: String) {
+        self.name = name
+        self.sets = [Set(set: 1, weight: 0.0, reps: 0), Set(set: 2, weight: 0.0, reps: 0)]
+    }
+    
+    struct Set: Codable {
+        
+        let set: Int
+        var weight: Double
+        var reps: Int
+        
+    }
     
 }
+
+struct Workout: Codable, Identifiable {
+    
+    var id: Date {
+        startTime
+    }
+    var startTime: Date = Date()
+    var time: String = "00:00:00"
+    var allEx: [Exercise] = []
+    
+    init(startTime: Date, time: String, allEx: [Exercise]) {
+        self.startTime = startTime
+        self.time = time
+        self.allEx = allEx
+    }
+    
+}
+
 
 
 

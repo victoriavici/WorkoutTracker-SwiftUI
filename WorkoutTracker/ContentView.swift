@@ -18,15 +18,26 @@ struct ContentView: View {
         TabView {
             WorkoutView()
                 .tabItem {
-                    Image(systemName: "dumbbell")
+                    var nieco = UIDevice.current.systemVersion
+                    if Double(UIDevice.current.systemVersion) ?? 0 >= 16.0 {
+                        Image(systemName: "dumbbell.fill")
+                    } else {
+                        Image(systemName: "scalemass")
+                    }
                 }
+
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.line.uptrend.xyaxis")
                 }
+
             AboutView()
                 .tabItem {
-                    Image(systemName: "info.square")
+                    if Double(UIDevice.current.systemVersion) ?? 0 >= 16.0 {
+                        Image(systemName: "info.square")
+                    } else {
+                        Image(systemName: "info")
+                    }
                 }
         }
         .tabViewStyle(.automatic)
