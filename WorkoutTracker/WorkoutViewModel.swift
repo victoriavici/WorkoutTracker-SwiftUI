@@ -9,6 +9,7 @@ import Foundation
 
 class WorkoutViewModel: ObservableObject, Identifiable {
     @Published var workouts = CacheManager.shared.workouts
+    @Published var isWeightInKg = CacheManager.shared.isWeightInKg
     
     init() {
         subscribe()
@@ -17,6 +18,8 @@ class WorkoutViewModel: ObservableObject, Identifiable {
     func subscribe() {
         CacheManager.shared.workoutsPublisher
             .assign(to: &$workouts)
+        CacheManager.shared.isWeightInKgPublisher
+            .assign(to: &$isWeightInKg)
     }
     
     func getTime(workout: Workout) -> String {
@@ -43,6 +46,9 @@ class WorkoutViewModel: ObservableObject, Identifiable {
             exercise.sets.forEach { sets in
                 volume += Double(sets.reps) * sets.weight
             }
+        }
+        if !isWeightInKg {
+            volume = volume * C.kgToLbsMultiplayer
         }
         return volume
     }

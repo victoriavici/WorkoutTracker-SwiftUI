@@ -13,7 +13,7 @@ struct WorkoutView: View {
     @ObservedObject var viewModel = WorkoutViewModel()
     
     // MARK: - Body
-
+    
     var body: some View {
         
         NavigationView {
@@ -38,20 +38,24 @@ struct WorkoutView: View {
                         .padding(.horizontal)
                     
                 }
-                List() {
-                    ForEach (viewModel.workouts) { workout in
-                        historyLog(workout: workout)
+                ScrollView{
+                    LazyVStack() {
+                        ForEach (viewModel.workouts) { workout in
+                            historyLog(workout: workout)
+                                .padding(.vertical,8 )
+                        }
                     }
+                    
                 }
-                .listStyle(.plain)
+                .padding(.horizontal)
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("Workout", displayMode: .inline)
             .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .top)
             .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gearshape")
-                })
+            })
             .background(Color("pozadie"))
-          
+            
         }
     }
     
@@ -60,26 +64,30 @@ struct WorkoutView: View {
 // MARK: - Components
 
 private extension WorkoutView {
-  
+    
     func historyLog(workout: Workout) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(viewModel.formatter(date: workout.startTime)).font(.subheadline)
-            Text(viewModel.getName(workout: workout)).bold()
-            
+        VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading) {
+                Text(viewModel.formatter(date: workout.startTime)).font(.caption)
+                Text(viewModel.getName(workout: workout)).bold()
+            }
             HStack(alignment: .center, spacing: 32) {
-                    VStack {
-                        Text("Time")
-                        Text(viewModel.getTime(workout: workout))
-                    }.frame(maxWidth: .infinity)
-                    VStack {
-                        Text("Volume")
-                        Text(String(viewModel.countVolume(workout: workout)))
-                    }.frame(maxWidth: .infinity)
-                    VStack {
-                        Text("Sets")
-                        Text(String(viewModel.countSets(workout: workout)))
-                    }.frame(maxWidth: .infinity)
+                VStack {
+                    Text("Time")
+                    Text(viewModel.getTime(workout: workout))
                 }
+                .frame(maxWidth: .infinity)
+                VStack {
+                    Text("Volume")
+                    Text(String(format: "%.2f", viewModel.countVolume(workout: workout)))
+                }
+                .frame(maxWidth: .infinity)
+                VStack {
+                    Text("Sets")
+                    Text(String(viewModel.countSets(workout: workout)))
+                }
+                .frame(maxWidth: .infinity)
+            }
             .padding(.horizontal, 24)
         }
     }

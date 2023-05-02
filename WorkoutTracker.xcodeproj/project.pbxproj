@@ -30,7 +30,7 @@
 		CADE3E3D2A00FC28003FC992 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E3C2A00FC28003FC992 /* StatisticsViewModel.swift */; };
 		CADE3E3F2A00FE98003FC992 /* ExerciseStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E3E2A00FE98003FC992 /* ExerciseStatsView.swift */; };
 		CADE3E412A013A41003FC992 /* ExerciseStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E402A013A41003FC992 /* ExerciseStatsViewModel.swift */; };
-		CADE3E472A017ABC003FC992 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = CADE3E462A017ABC003FC992 /* SwiftUICharts */; };
+		CADE3E4A2A018429003FC992 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = CADE3E492A018429003FC992 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CADE3E2629FEDB32003FC992 /* GoodPersistence in Frameworks */,
-				CADE3E472A017ABC003FC992 /* SwiftUICharts in Frameworks */,
+				CADE3E4A2A018429003FC992 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +145,7 @@
 			name = WorkoutTracker;
 			packageProductDependencies = (
 				CADE3E2529FEDB32003FC992 /* GoodPersistence */,
-				CADE3E462A017ABC003FC992 /* SwiftUICharts */,
+				CADE3E492A018429003FC992 /* SwiftUICharts */,
 			);
 			productName = WorkoutTracker;
 			productReference = CA2D1CC529EE8A7A00F7070D /* WorkoutTracker.app */;
@@ -177,7 +177,7 @@
 			mainGroup = CA2D1CBC29EE8A7A00F7070D;
 			packageReferences = (
 				CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */,
-				CADE3E452A017ABB003FC992 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				CADE3E482A018429003FC992 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = CA2D1CC629EE8A7A00F7070D /* Products */;
 			projectDirPath = "";
@@ -441,12 +441,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		CADE3E452A017ABB003FC992 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+		CADE3E482A018429003FC992 /* XCRemoteSwiftPackageReference "ChartView" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -457,9 +457,9 @@
 			package = CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */;
 			productName = GoodPersistence;
 		};
-		CADE3E462A017ABC003FC992 /* SwiftUICharts */ = {
+		CADE3E492A018429003FC992 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CADE3E452A017ABB003FC992 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			package = CADE3E482A018429003FC992 /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */

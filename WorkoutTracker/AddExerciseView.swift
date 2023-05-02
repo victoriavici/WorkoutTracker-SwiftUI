@@ -20,31 +20,34 @@ struct AddExerciseView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(viewModel.exercises) { exercise in
-                    let isSelected = viewModel.selectedExercises.contains(where: { $0.id == exercise.id })
-                    Button {
-                        viewModel.selectExercise(selected: exercise)
-                    } label: {
-                        HStack {
-                            Text(exercise.name)
-                                .multilineTextAlignment(.leading)
-                            if isSelected {
-                                Image(systemName: "checkmark")
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .foregroundColor(.blue)
+            ScrollView {
+                LazyVStack {
+                    ForEach(viewModel.exercises) { exercise in
+                        let isSelected = viewModel.selectedExercises.contains(where: { $0.id == exercise.id })
+                        Button {
+                            viewModel.selectExercise(selected: exercise)
+                        } label: {
+                            HStack {
+                                Text(exercise.name)
+                                    .multilineTextAlignment(.leading)
+                                if isSelected {
+                                    Image(systemName: "checkmark")
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .foregroundColor(.blue)
+                                } else {
+                                    Rectangle()
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .foregroundColor(.white)
+                                }
                             }
                         }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
                 }
-               
+                .foregroundColor(.black)
             }
             .searchable(text: $viewModel.searchText)
-            .listStyle(.plain)
-            .listRowSeparator(.hidden)
-
-            
+                        
             if viewModel.selectedExercises.count > 0 {
                 addButton()
             }

@@ -42,12 +42,13 @@ struct StatisticsView: View {
                 Text("Main exercises")
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-            
+                
                 List() {
                     ForEach(viewModel.getMainExercises(), id: \.0) { exercise in
                         exerciseLog(exercise: exercise)
                     }
-                }.listStyle(.plain)
+                }
+                .listStyle(.plain)
                 
             }
             .padding()

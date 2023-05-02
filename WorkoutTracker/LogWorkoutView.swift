@@ -42,35 +42,44 @@ struct LogWorkoutView: View {
                 .padding()
             }
             .padding(.horizontal, 24)
-            List {
-                ForEach(viewModel.allEx) { exercise in
-                    
-                    header(exercise: exercise)
-                    
-                    ForEach(exercise.sets, id: \.set) { index in
-                        setRow(exercise: exercise, index: index.set)
-                            .id(index.set)
+            ScrollViewReader { scrollview in
+                List {
+                    ForEach(viewModel.allEx) { exercise in
+                        
+                        header(exercise: exercise)
+                        
+                        ForEach(exercise.sets, id: \.set) { index in
+                            setRow(exercise: exercise, index: index.set)
+                                .id(index.set)
+                        }
+                        .onDelete { index in
+                            viewModel.deleteSet(exercise: exercise, index: index)
+                        }
+                        addSetButton(exercise: exercise)
+                        
                     }
-                    .onDelete { index in
-                        viewModel.deleteSet(exercise: exercise, index: index)
+                    .listStyle(.plain)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    
+                    VStack(spacing: 16) {
+                        addExercise()
+                        HStack {
+                            addDiscardAndFinishButton(text: "Discard") {}
+                            addDiscardAndFinishButton(text: "Finish") {}
+                        }
                     }
-                    addSetButton(exercise: exercise)
-                    Spacer()
+                    .listRowSeparator(.hidden)
+                    .id(0)
+                    .padding(.vertical)
+                    
                 }
                 .listStyle(.plain)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                
-                VStack(spacing: 16) {
-                    addExercise()
-                    HStack {
-                        addDiscardAndFinishButton(text: "Discard") {}
-                        addDiscardAndFinishButton(text: "Finish") {}
+                .onAppear() {
+                    withAnimation(.spring(blendDuration: 0.3)) {
+                        scrollview.scrollTo(0)
                     }
                 }
-                .listRowSeparator(.hidden)
             }
-            .listStyle(.plain)
-            
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("Log workout", displayMode: .inline)
@@ -150,11 +159,13 @@ private extension LogWorkoutView {
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
+                .keyboardType(.decimalPad)
             
             TextField("reps", value: $viewModel.allEx[exIndex].sets[index - 1].reps, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
+                .keyboardType(.decimalPad)
         }
         .frame(height: 24)
     }

@@ -11,6 +11,7 @@ class ExerciseStatsViewModel: ObservableObject {
     
     var workouts = CacheManager.shared.workouts
     let weight = CacheManager.shared.isWeightInKg ? "kg" : "lbs"
+   
     
     func getExercises(name: String) -> [Exercise] {
         var exercises: [Exercise] = []
@@ -65,4 +66,57 @@ class ExerciseStatsViewModel: ObservableObject {
         
         return String("\(maxWeight)\(weight) ")
     }
+    
+    func getSessionData(name: String) -> [Double]{
+        var data: [Double] = []
+        getExercises(name: name).forEach() { exercise in
+            var weight = 0.0
+            exercise.sets.forEach() { set in
+                weight += set.weight * Double(set.reps)
+            }
+            data.append(weight)
+        }
+        return data
+    }
+    
+    func getHeaviestWeightData(name: String) -> [Double]{
+        var data: [Double] = []
+        getExercises(name: name).forEach() { exercise in
+            var weight = 0.0
+            exercise.sets.forEach() { set in
+                if set.weight > weight {
+                    weight = set.weight
+                }
+            }
+            data.append(weight)
+        }
+        return data
+    }
+    
+    func getBestSetVolumeData(name: String) -> [Double]{
+        var data: [Double] = []
+        getExercises(name: name).forEach() { exercise in
+            var weight = 0.0
+            exercise.sets.forEach() { set in
+                if (set.weight * Double(set.reps)) > weight {
+                    weight = set.weight * Double(set.reps)
+                }
+            }
+            data.append(weight)
+        }
+        return data
+    }
+    
+    func getTotalRepsData(name: String) -> [Double]{
+        var data: [Double] = []
+        getExercises(name: name).forEach() { exercise in
+            var reps = 0
+            exercise.sets.forEach() { set in
+                reps += set.reps
+            }
+            data.append(Double(reps))
+        }
+        return data
+    }
+   
 }
