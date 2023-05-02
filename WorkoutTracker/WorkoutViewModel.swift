@@ -19,6 +19,10 @@ class WorkoutViewModel: ObservableObject, Identifiable {
             .assign(to: &$workouts)
     }
     
+    func getTime(workout: Workout) -> String {
+        return workout.timeToString(interval: workout.endTime.timeIntervalSince(workout.startTime))
+    }
+    
     func formatter(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"

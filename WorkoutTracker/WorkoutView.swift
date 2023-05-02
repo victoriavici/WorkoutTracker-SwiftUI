@@ -34,7 +34,7 @@ struct WorkoutView: View {
                     
                     Text("History (\(viewModel.workouts.count))")
                         .frame(maxWidth: .infinity, alignment: .topLeading)
-                        .font(.title3.bold())
+                        .font(.headline)
                         .padding(.horizontal)
                     
                 }
@@ -69,7 +69,7 @@ private extension WorkoutView {
             HStack(alignment: .center, spacing: 32) {
                     VStack {
                         Text("Time")
-                        Text(workout.time)
+                        Text(viewModel.getTime(workout: workout))
                     }.frame(maxWidth: .infinity)
                     VStack {
                         Text("Volume")

@@ -15,7 +15,7 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     @Published var time: String = "00:00:00"
     @Published var startTime: Date = Date()
     @Published var currentTime: Date = Date()
-    @Published var endTime = Date()
+  //  @Published var endTime = Date()
     @Published var sets: Int = 0
     @Published var volume: Double = 0.0
     @Published var allEx: [Exercise] = [] {
@@ -50,13 +50,6 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     func updateTime() {
         currentTime = Date()
         time = timeToString(interval: currentTime.timeIntervalSince(startTime))
-    }
-    
-    private func timeToString(interval: Double) -> String {
-        let hours = Int(interval / 3600)
-        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
-        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
     private func countSets() {
@@ -108,9 +101,15 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     }
     
     func saveWorkout() {
-        CacheManager.shared.add(workout: Workout(startTime: startTime, time: time, allEx: allEx))
+        CacheManager.shared.add(workout: Workout(startTime: startTime,endTime: Date(),/* time: time,*/ allEx: allEx))
     }
     
+    func timeToString(interval: Double) -> String {
+        let hours = Int(interval / 3600)
+        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
 }
 
 struct Exercise: Codable, Identifiable {
@@ -142,13 +141,22 @@ struct Workout: Codable, Identifiable {
         startTime
     }
     var startTime: Date = Date()
-    var time: String = "00:00:00"
+    //var time: String = "00:00:00"
     var allEx: [Exercise] = []
+    var endTime: Date = Date()
     
-    init(startTime: Date, time: String, allEx: [Exercise]) {
+    init(startTime: Date, endTime: Date, /*time: String,*/ allEx: [Exercise]) {
         self.startTime = startTime
-        self.time = time
+       // self.time = time
         self.allEx = allEx
+        self.endTime = endTime
+    }
+    
+    func timeToString(interval: Double) -> String {
+        let hours = Int(interval / 3600)
+        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
 }

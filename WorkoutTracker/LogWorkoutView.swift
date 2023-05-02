@@ -217,7 +217,6 @@ private extension LogWorkoutView {
                     .padding(.horizontal, 20)
                     .background(Color.white)
                     .overlay(RoundedRectangle(cornerRadius: 3).stroke(Color.gray.opacity(0.3)).foregroundColor(.white))
-                
             }
         }
         .buttonStyle(BorderlessButtonStyle())
@@ -226,7 +225,6 @@ private extension LogWorkoutView {
  
     func getIndexExercise(exercise: Exercise) -> Int {
         return viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
-
     }
     
 }
