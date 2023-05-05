@@ -11,9 +11,15 @@ struct LogWorkoutView: View {
     
     // MARK: - Variables
     
+    enum Field: Hashable {
+            case weight
+            case reps
+        }
+    
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel = LogWorkoutViewModel()
-    
+    @FocusState private var focusedField: Field?
+
     
     // MARK: - Body
     
@@ -42,6 +48,9 @@ struct LogWorkoutView: View {
                 .padding()
             }
             .padding(.horizontal, 24)
+            //            .onTapGesture {
+            //               hideKeyboard()
+            //            }
             ScrollViewReader { scrollview in
                 List {
                     ForEach(viewModel.allEx) { exercise in
@@ -55,6 +64,7 @@ struct LogWorkoutView: View {
                         .onDelete { index in
                             viewModel.deleteSet(exercise: exercise, index: index)
                         }
+                        
                         addSetButton(exercise: exercise)
                         
                     }
@@ -98,6 +108,19 @@ struct LogWorkoutView: View {
         }
         .onDisappear {
             viewModel.stopTimer()
+        }
+        .overlay(alignment: .bottom) {
+            Group {
+                if true //searchIsActiveOrSomeShit
+                {
+                    Button {
+                        hideKeyboard()
+                    } label: {
+                        Text("Submit")
+                    }
+                    
+                }
+            }
         }
     }
 }
@@ -160,14 +183,18 @@ private extension LogWorkoutView {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
                 .keyboardType(.decimalPad)
+                .focused($focusedField, equals: .weight)
             
             TextField("reps", value: $viewModel.allEx[exIndex].sets[index - 1].reps, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
                 .keyboardType(.decimalPad)
+                .focused($focusedField, equals: .reps)
+
         }
         .frame(height: 24)
+        
     }
     
     func addSetButton(exercise: Exercise) -> some View {
@@ -215,8 +242,8 @@ private extension LogWorkoutView {
                 if text == "Finish" {
                     viewModel.saveWorkout()
                 }
-                viewModel.clearWorkout()
                 
+                viewModel.clearWorkout()
                 presentationMode.wrappedValue.dismiss()
 
             } label: {
@@ -236,6 +263,10 @@ private extension LogWorkoutView {
  
     func getIndexExercise(exercise: Exercise) -> Int {
         return viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
+    }
+    
+    func hideKeyboard() {
+        UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.endEditing(true)
     }
     
 }

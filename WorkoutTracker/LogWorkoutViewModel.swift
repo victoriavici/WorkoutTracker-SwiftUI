@@ -101,7 +101,17 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     
     func saveWorkout() {
         if !CacheManager.shared.isWeightInKg {
-
+            for i in 0..<allEx.count {
+                var exercise = allEx[i]
+                for j in 0..<exercise.sets.count {
+                    var set = exercise.sets[j]
+                    if set.weight > 0 {
+                        set.weight /= C.kgToLbsMultiplayer
+                    }
+                    exercise.sets[j] = set
+                }
+                allEx[i] = exercise
+            }
         }
         CacheManager.shared.add(workout: Workout(startTime: startTime,endTime: Date(),/* time: time,*/ allEx: allEx))
     }
