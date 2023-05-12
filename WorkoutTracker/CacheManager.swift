@@ -32,4 +32,13 @@ class CacheManager {
         workouts.append(workout)
     }
     
+    @UserDefaultValue("userExercises", defaultValue: [])
+    var userExercises: [Exercises]
+
+    lazy var userExercisesPublisher: AnyPublisher<[Exercises], Never> = self._userExercises.publisher.eraseToAnyPublisher()
+    
+    func add(exercise: Exercises) {
+        userExercises.append(exercise)
+    }
+    
 }

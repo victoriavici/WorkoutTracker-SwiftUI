@@ -48,7 +48,6 @@ class ExerciseStatsViewModel: ObservableObject {
                 }
             }
         }
-        
         return String("\(maxWeight)\(weight) x \(maxReps)")
     }
     
@@ -63,7 +62,6 @@ class ExerciseStatsViewModel: ObservableObject {
                 maxWeight = weight
             }
         }
-        
         return String("\(maxWeight)\(weight) ")
     }
     

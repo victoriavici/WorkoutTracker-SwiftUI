@@ -35,7 +35,6 @@ class StatisticsViewModel: ObservableObject {
     }
     
     func getAvgVolume() -> String {
-        
         String(format: "%.2f", getTotalVolume()/Double(workouts.count))
     }
     
@@ -44,13 +43,10 @@ class StatisticsViewModel: ObservableObject {
         workouts.forEach() { workout in
             duration += workout.endTime.timeIntervalSince(workout.startTime)
         }
-        // MARK: - TODO
-        return LogWorkoutViewModel().timeToString(interval: duration)
+        return timeToString(interval: duration)
     }
     
-    
     func getMainExercises() -> [(String, Int)] {
-        
         var exercises: [(name: String, count: Int)] = []
         workouts.forEach() { workout in
             workout.allEx.forEach() { exercise in
@@ -64,11 +60,13 @@ class StatisticsViewModel: ObservableObject {
             }
         }
         exercises.sort { $0.count > $1.count }
-        
         return exercises
     }
-    
-   
-    
-    
+
+    private func timeToString(interval: Double) -> String {
+        let hours = Int(interval / 3600)
+        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
 }

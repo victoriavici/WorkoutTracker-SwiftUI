@@ -10,9 +10,10 @@ import SwiftUI
 struct AddExerciseView: View {
     
     // MARK: - Variables
-
+    
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel = AddExerciseViewModel()
+    @ObservedObject var viewModel: AddExerciseViewModel
+    @State var showingAlert = false
     
     let action: ([Exercises]) -> Void
     
@@ -20,8 +21,9 @@ struct AddExerciseView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                LazyVStack {
+            if viewModel.isLoading == .success {
+                Spacer(minLength: 16)
+                List {
                     ForEach(viewModel.exercises) { exercise in
                         let isSelected = viewModel.selectedExercises.contains(where: { $0.id == exercise.id })
                         Button {
@@ -30,13 +32,15 @@ struct AddExerciseView: View {
                             HStack {
                                 Text(exercise.name)
                                     .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .foregroundColor(.black)
                                 if isSelected {
                                     Image(systemName: "checkmark")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .frame(maxWidth: 10, alignment: .trailing)
                                         .foregroundColor(.blue)
                                 } else {
                                     Rectangle()
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .frame(maxWidth: 10, alignment: .trailing)
                                         .foregroundColor(.white)
                                 }
                             }
@@ -44,19 +48,28 @@ struct AddExerciseView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
                     }
                 }
-                .foregroundColor(.black)
-            }
-            .searchable(text: $viewModel.searchText)
-                        
-            if viewModel.selectedExercises.count > 0 {
-                addButton()
+                .listStyle(.plain)
+                .searchable(text: $viewModel.searchText)
+                
+                if viewModel.selectedExercises.count > 0 {
+                    addButton()
+                }
+                
+            } else if viewModel.isLoading == .loading{
+                ProgressView("Loading...")
+            } else {
+                Text("Error!")
+                Button {
+                    viewModel.loadData()
+                } label: {
+                    Text("Retry loading")
+                }
             }
         }
         .navigationBarTitle("Add exercise")
         .navigationBarItems(trailing: NavigationLink(destination: CreateExerciseView { name in viewModel.createExercise(name: name)}) {
             Text("Create")
-            })
-        .padding()
+        })
     }
     
 }
@@ -70,6 +83,7 @@ extension AddExerciseView {
             Button {
                 action(viewModel.selectedExercises)
                 presentationMode.wrappedValue.dismiss()
+                viewModel.selectedExercises.removeAll()
             } label: {
                 Text("Add \(viewModel.selectedExercises.count) exercise")
                     .frame(maxWidth: .infinity, maxHeight: 8)
@@ -80,13 +94,14 @@ extension AddExerciseView {
                     .background(Color.blue)
                     .cornerRadius(3)
             }
+            .padding()
         }
     }
 }
 
 struct AddExerciseView_Previews: PreviewProvider {
     static var previews: some View {
-        AddExerciseView {_ in }
+        AddExerciseView(viewModel: AddExerciseViewModel()) { _ in }
     }
     
 }

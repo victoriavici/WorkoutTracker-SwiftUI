@@ -80,7 +80,6 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
             return Exercise.Set(set: index + 1, weight: tuple.weight, reps: tuple.reps)
         }
         allEx[exIndex].sets = newSets
-        
     }
     
     func addExercise(selected: [Exercises]) {
@@ -113,7 +112,7 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
                 allEx[i] = exercise
             }
         }
-        CacheManager.shared.add(workout: Workout(startTime: startTime,endTime: Date(),/* time: time,*/ allEx: allEx))
+        CacheManager.shared.add(workout: Workout(startTime: startTime,endTime: Date(), allEx: allEx))
     }
     
     func timeToString(interval: Double) -> String {
@@ -124,55 +123,11 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     }
 }
 
-struct Exercise: Codable, Identifiable {
+enum Status: String {
     
-    var id: String {
-        name
-    }
-    var name: String
-    var sets: [Set] = [Set(set: 1, weight: 0.0, reps: 0), Set(set: 2, weight: 0.0, reps: 0)]
-    
-    init(name: String) {
-        self.name = name
-        self.sets = [Set(set: 1, weight: 0.0, reps: 0), Set(set: 2, weight: 0.0, reps: 0)]
-    }
-    
-    struct Set: Codable {
-        
-        let set: Int
-        var weight: Double
-        var reps: Int
-        
-    }
-    
+    case loading = "Loading..."
+    case error = "Error"
+    case success = "Success"
 }
-
-struct Workout: Codable, Identifiable {
-    
-    var id: Date {
-        startTime
-    }
-    var startTime: Date = Date()
-    //var time: String = "00:00:00"
-    var allEx: [Exercise] = []
-    var endTime: Date = Date()
-    
-    init(startTime: Date, endTime: Date, /*time: String,*/ allEx: [Exercise]) {
-        self.startTime = startTime
-       // self.time = time
-        self.allEx = allEx
-        self.endTime = endTime
-    }
-    
-    func timeToString(interval: Double) -> String {
-        let hours = Int(interval / 3600)
-        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
-        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
-    
-}
-
-
 
 

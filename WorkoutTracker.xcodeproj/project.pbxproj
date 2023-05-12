@@ -18,6 +18,14 @@
 		CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE129EECECC00F7070D /* SettingsView.swift */; };
 		CA2D1CE429EF042800F7070D /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE329EF042800F7070D /* SettingViewModel.swift */; };
 		CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D1CE529EF052D00F7070D /* SettingModel.swift */; };
+		CA73E5A82A0D3529002E8513 /* GoodCache in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5A72A0D3529002E8513 /* GoodCache */; };
+		CA73E5AA2A0D3529002E8513 /* GoodCombineExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5A92A0D3529002E8513 /* GoodCombineExtensions */; };
+		CA73E5AC2A0D3529002E8513 /* GoodExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5AB2A0D3529002E8513 /* GoodExtensions */; };
+		CA73E5AE2A0D3529002E8513 /* GoodReactor in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5AD2A0D3529002E8513 /* GoodReactor */; };
+		CA73E5B02A0D3529002E8513 /* GoodRequestManager in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5AF2A0D3529002E8513 /* GoodRequestManager */; };
+		CA73E5B22A0D3529002E8513 /* GoodStructs in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5B12A0D3529002E8513 /* GoodStructs */; };
+		CA73E5B42A0D3529002E8513 /* Mockable in Frameworks */ = {isa = PBXBuildFile; productRef = CA73E5B32A0D3529002E8513 /* Mockable */; };
+		CA73E5B82A0E237F002E8513 /* ExercisesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73E5B72A0E237F002E8513 /* ExercisesModel.swift */; };
 		CAD8CEF129F7D00D0015DBFC /* LogWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */; };
 		CAD8CEF329F9450C0015DBFC /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */; };
 		CADE3E1D29FAA7D6003FC992 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */; };
@@ -31,6 +39,11 @@
 		CADE3E3F2A00FE98003FC992 /* ExerciseStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E3E2A00FE98003FC992 /* ExerciseStatsView.swift */; };
 		CADE3E412A013A41003FC992 /* ExerciseStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE3E402A013A41003FC992 /* ExerciseStatsViewModel.swift */; };
 		CADE3E4A2A018429003FC992 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = CADE3E492A018429003FC992 /* SwiftUICharts */; };
+		CAF581162A0A1A820077531C /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF581152A0A1A820077531C /* RequestManager.swift */; };
+		CAF581192A0A1BF80077531C /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = CAF581182A0A1BF80077531C /* AlamofireImage */; };
+		CAF581232A0A1E260077531C /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF581222A0A1E260077531C /* EndPoint.swift */; };
+		CAF581252A0A22D20077531C /* RequestManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF581242A0A22D20077531C /* RequestManagerType.swift */; };
+		CAF581272A0D1E4B0077531C /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF581262A0D1E4B0077531C /* AboutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +60,7 @@
 		CA2D1CE129EECECC00F7070D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CA2D1CE329EF042800F7070D /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		CA2D1CE529EF052D00F7070D /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		CA73E5B72A0E237F002E8513 /* ExercisesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesModel.swift; sourceTree = "<group>"; };
 		CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWorkoutViewModel.swift; sourceTree = "<group>"; };
 		CAD8CEF229F9450C0015DBFC /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
 		CADE3E1C29FAA7D6003FC992 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
@@ -58,6 +72,10 @@
 		CADE3E3C2A00FC28003FC992 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		CADE3E3E2A00FE98003FC992 /* ExerciseStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStatsView.swift; sourceTree = "<group>"; };
 		CADE3E402A013A41003FC992 /* ExerciseStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStatsViewModel.swift; sourceTree = "<group>"; };
+		CAF581152A0A1A820077531C /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		CAF581222A0A1E260077531C /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		CAF581242A0A22D20077531C /* RequestManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerType.swift; sourceTree = "<group>"; };
+		CAF581262A0D1E4B0077531C /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +83,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA73E5AA2A0D3529002E8513 /* GoodCombineExtensions in Frameworks */,
+				CA73E5AC2A0D3529002E8513 /* GoodExtensions in Frameworks */,
+				CA73E5AE2A0D3529002E8513 /* GoodReactor in Frameworks */,
 				CADE3E2629FEDB32003FC992 /* GoodPersistence in Frameworks */,
+				CA73E5B42A0D3529002E8513 /* Mockable in Frameworks */,
 				CADE3E4A2A018429003FC992 /* SwiftUICharts in Frameworks */,
+				CA73E5B22A0D3529002E8513 /* GoodStructs in Frameworks */,
+				CA73E5A82A0D3529002E8513 /* GoodCache in Frameworks */,
+				CAF581192A0A1BF80077531C /* AlamofireImage in Frameworks */,
+				CA73E5B02A0D3529002E8513 /* GoodRequestManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,9 +126,11 @@
 				CADE3E2B29FFD4BE003FC992 /* WorkoutViewModel.swift */,
 				CA2D1CDB29EE90E200F7070D /* LogWorkoutView.swift */,
 				CAD8CEF029F7D00D0015DBFC /* LogWorkoutViewModel.swift */,
+				CA73E5B72A0E237F002E8513 /* ExercisesModel.swift */,
 				CA2D1CDD29EE999A00F7070D /* StatisticsView.swift */,
 				CADE3E3C2A00FC28003FC992 /* StatisticsViewModel.swift */,
 				CA2D1CDF29EE9B0800F7070D /* AboutView.swift */,
+				CAF581262A0D1E4B0077531C /* AboutViewModel.swift */,
 				CA2D1CE129EECECC00F7070D /* SettingsView.swift */,
 				CA2D1CE329EF042800F7070D /* SettingViewModel.swift */,
 				CA2D1CE529EF052D00F7070D /* SettingModel.swift */,
@@ -115,6 +143,9 @@
 				CADE3E2929FFA530003FC992 /* Constants.swift */,
 				CADE3E3E2A00FE98003FC992 /* ExerciseStatsView.swift */,
 				CADE3E402A013A41003FC992 /* ExerciseStatsViewModel.swift */,
+				CAF581152A0A1A820077531C /* RequestManager.swift */,
+				CAF581242A0A22D20077531C /* RequestManagerType.swift */,
+				CAF581222A0A1E260077531C /* EndPoint.swift */,
 			);
 			path = WorkoutTracker;
 			sourceTree = "<group>";
@@ -146,6 +177,14 @@
 			packageProductDependencies = (
 				CADE3E2529FEDB32003FC992 /* GoodPersistence */,
 				CADE3E492A018429003FC992 /* SwiftUICharts */,
+				CAF581182A0A1BF80077531C /* AlamofireImage */,
+				CA73E5A72A0D3529002E8513 /* GoodCache */,
+				CA73E5A92A0D3529002E8513 /* GoodCombineExtensions */,
+				CA73E5AB2A0D3529002E8513 /* GoodExtensions */,
+				CA73E5AD2A0D3529002E8513 /* GoodReactor */,
+				CA73E5AF2A0D3529002E8513 /* GoodRequestManager */,
+				CA73E5B12A0D3529002E8513 /* GoodStructs */,
+				CA73E5B32A0D3529002E8513 /* Mockable */,
 			);
 			productName = WorkoutTracker;
 			productReference = CA2D1CC529EE8A7A00F7070D /* WorkoutTracker.app */;
@@ -178,6 +217,8 @@
 			packageReferences = (
 				CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */,
 				CADE3E482A018429003FC992 /* XCRemoteSwiftPackageReference "ChartView" */,
+				CAF581172A0A1BF80077531C /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */,
 			);
 			productRefGroup = CA2D1CC629EE8A7A00F7070D /* Products */;
 			projectDirPath = "";
@@ -208,7 +249,10 @@
 				CADE3E2329FCE5D6003FC992 /* CreateExerciseViewModel.swift in Sources */,
 				CADE3E2A29FFA530003FC992 /* Constants.swift in Sources */,
 				CA2D1CE229EECECC00F7070D /* SettingsView.swift in Sources */,
+				CA73E5B82A0E237F002E8513 /* ExercisesModel.swift in Sources */,
 				CADE3E2C29FFD4BE003FC992 /* WorkoutViewModel.swift in Sources */,
+				CAF581252A0A22D20077531C /* RequestManagerType.swift in Sources */,
+				CAF581232A0A1E260077531C /* EndPoint.swift in Sources */,
 				CADE3E2129FC369E003FC992 /* CreateExerciseView.swift in Sources */,
 				CA2D1CC929EE8A7A00F7070D /* WorkoutTrackerApp.swift in Sources */,
 				CA2D1CDE29EE999A00F7070D /* StatisticsView.swift in Sources */,
@@ -217,12 +261,14 @@
 				CA2D1CDA29EE8E9B00F7070D /* WorkoutView.swift in Sources */,
 				CADE3E412A013A41003FC992 /* ExerciseStatsViewModel.swift in Sources */,
 				CADE3E2829FF9C87003FC992 /* CacheManager.swift in Sources */,
+				CAF581272A0D1E4B0077531C /* AboutViewModel.swift in Sources */,
 				CADE3E1D29FAA7D6003FC992 /* AddExerciseViewModel.swift in Sources */,
 				CA2D1CCD29EE8A7A00F7070D /* ContentView.swift in Sources */,
 				CA2D1CE029EE9B0800F7070D /* AboutView.swift in Sources */,
 				CAD8CEF329F9450C0015DBFC /* AddExerciseView.swift in Sources */,
 				CA2D1CDC29EE90E200F7070D /* LogWorkoutView.swift in Sources */,
 				CADE3E3F2A00FE98003FC992 /* ExerciseStatsView.swift in Sources */,
+				CAF581162A0A1A820077531C /* RequestManager.swift in Sources */,
 				CA2D1CE629EF052D00F7070D /* SettingModel.swift in Sources */,
 				CADE3E3D2A00FC28003FC992 /* StatisticsViewModel.swift in Sources */,
 			);
@@ -433,6 +479,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GoodRequest/GoodIOSExtensions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.4;
+			};
+		};
 		CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GoodRequest/GoodPersistence";
@@ -449,9 +503,52 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		CAF581172A0A1BF80077531C /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA73E5A72A0D3529002E8513 /* GoodCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = GoodCache;
+		};
+		CA73E5A92A0D3529002E8513 /* GoodCombineExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = GoodCombineExtensions;
+		};
+		CA73E5AB2A0D3529002E8513 /* GoodExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = GoodExtensions;
+		};
+		CA73E5AD2A0D3529002E8513 /* GoodReactor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = GoodReactor;
+		};
+		CA73E5AF2A0D3529002E8513 /* GoodRequestManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = GoodRequestManager;
+		};
+		CA73E5B12A0D3529002E8513 /* GoodStructs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = GoodStructs;
+		};
+		CA73E5B32A0D3529002E8513 /* Mockable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA73E5A62A0D3529002E8513 /* XCRemoteSwiftPackageReference "GoodIOSExtensions" */;
+			productName = Mockable;
+		};
 		CADE3E2529FEDB32003FC992 /* GoodPersistence */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CADE3E2429FEDB32003FC992 /* XCRemoteSwiftPackageReference "GoodPersistence" */;
@@ -461,6 +558,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CADE3E482A018429003FC992 /* XCRemoteSwiftPackageReference "ChartView" */;
 			productName = SwiftUICharts;
+		};
+		CAF581182A0A1BF80077531C /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAF581172A0A1BF80077531C /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

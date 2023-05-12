@@ -23,7 +23,7 @@ struct StatisticsView: View {
                 HStack {
                     Text("Total volume")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(String(viewModel.getTotalVolume()))
+                    Text(String(format: "%.2f", viewModel.getTotalVolume()))
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 HStack {
@@ -61,7 +61,6 @@ struct StatisticsView: View {
 extension StatisticsView {
     
     func exerciseLog(exercise: (name: String, count: Int)) -> some View {
-        
         VStack {
             NavigationLink(destination: ExerciseStatsView(name: exercise.name)) {
                 VStack (alignment: .leading) {
@@ -75,7 +74,6 @@ extension StatisticsView {
             }
         }
     }
-    
     
 }
 

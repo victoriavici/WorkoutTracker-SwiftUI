@@ -11,16 +11,12 @@ struct LogWorkoutView: View {
     
     // MARK: - Variables
     
-    enum Field: Hashable {
-            case weight
-            case reps
-        }
-    
+    @State private var keyboardIsActive = false
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel = LogWorkoutViewModel()
-    @FocusState private var focusedField: Field?
+    @ObservedObject var viewModel: LogWorkoutViewModel
 
-    
+    var addExerciseViewModel = AddExerciseViewModel()
+
     // MARK: - Body
     
     var body: some View {
@@ -48,9 +44,7 @@ struct LogWorkoutView: View {
                 .padding()
             }
             .padding(.horizontal, 24)
-            //            .onTapGesture {
-            //               hideKeyboard()
-            //            }
+            
             ScrollViewReader { scrollview in
                 List {
                     ForEach(viewModel.allEx) { exercise in
@@ -111,7 +105,7 @@ struct LogWorkoutView: View {
         }
         .overlay(alignment: .bottom) {
             Group {
-                if true //searchIsActiveOrSomeShit
+                if keyboardIsActive
                 {
                     Button {
                         hideKeyboard()
@@ -183,15 +177,19 @@ private extension LogWorkoutView {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
                 .keyboardType(.decimalPad)
-                .focused($focusedField, equals: .weight)
+                .onTapGesture {
+                    keyboardIsActive = true
+                }
             
             TextField("reps", value: $viewModel.allEx[exIndex].sets[index - 1].reps, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
                 .keyboardType(.decimalPad)
-                .focused($focusedField, equals: .reps)
-
+                .onTapGesture {
+                    keyboardIsActive = true
+                }
+            
         }
         .frame(height: 24)
         
@@ -229,7 +227,7 @@ private extension LogWorkoutView {
                 .background(Color.blue)
                 .cornerRadius(3)
             
-            NavigationLink(destination: AddExerciseView { exercises in viewModel.addExercise(selected: exercises)}, label: {})
+            NavigationLink(destination: AddExerciseView(viewModel: addExerciseViewModel) { exercises in viewModel.addExercise(selected: exercises)}, label: {})
                 .opacity(0)
         }
     }
@@ -242,10 +240,8 @@ private extension LogWorkoutView {
                 if text == "Finish" {
                     viewModel.saveWorkout()
                 }
-                
                 viewModel.clearWorkout()
                 presentationMode.wrappedValue.dismiss()
-
             } label: {
                 Text(text)
                     .frame(maxWidth: .infinity, maxHeight: 8)
@@ -260,20 +256,21 @@ private extension LogWorkoutView {
         .buttonStyle(BorderlessButtonStyle())
         
     }
- 
+    
     func getIndexExercise(exercise: Exercise) -> Int {
         return viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
     }
     
     func hideKeyboard() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.endEditing(true)
+        keyboardIsActive.toggle()
     }
     
 }
 
 struct LogWorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        LogWorkoutView()
+        LogWorkoutView(viewModel: LogWorkoutViewModel())
     }
     
 }

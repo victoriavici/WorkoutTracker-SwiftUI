@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Combine
+
 
 class AddExerciseViewModel: ObservableObject, Identifiable {
     
-     
+    lazy var requestManager: RequestManagerType = RequestManager(baseURL: .base)
     @Published var selectedExercises: [Exercises] = []
-    @Published var listOfExercises: [Exercises] = [Exercises(name: "Bench"), Exercises(name: "Squat"), Exercises(name: "Deadlift")] {
+    @Published var listOfExercises: [Exercises] = [] {
         didSet {
             updateExercises()
         }
@@ -22,41 +24,63 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
             updateExercises()
         }
     }
+    private var cancellables = Set<AnyCancellable>()
+    @Published var isLoading: Status = .loading
     
     init() {
         updateExercises()
+        loadData()
     }
     
+    func loadData() {
+        isLoading = .loading
+        DispatchQueue.global(qos: .background).async {
+            self.requestManager.fetchData()
+                .sink(receiveCompletion: { result in
+                    switch result {
+                    case .failure(let error):
+                        self.isLoading = .error
+                        print(error)
+                    case .finished:
+                        self.isLoading = .success
+                    }
+                }, receiveValue: { exercises in
+                    self.listOfExercises = exercises.data.reduce(into: []) { result, element in
+                        if !result.contains(element) {
+                            result.append(element)
+                        }
+                    }
+                    self.listOfExercises += CacheManager.shared.userExercises
+                    self.listOfExercises.sort { exercises1, exercises2 in
+                        exercises1.name < exercises2.name
+                    }
+                })
+                .store(in: &self.cancellables)
+        }
+    }
+
     private func updateExercises() {
-        let lcExercises = listOfExercises.map({Exercises(name: $0.name.lowercased())})
-        
-        exercises = searchText == "" ? lcExercises : lcExercises.filter {
-            $0.name.contains(searchText.lowercased())
+        exercises = searchText.isEmpty ? listOfExercises : listOfExercises.filter {
+            $0.name.localizedCaseInsensitiveContains(searchText)
         }
     }
     
     func selectExercise(selected: Exercises) {
         if let index = selectedExercises.firstIndex(where: { $0.id == selected.id }) {
-                  selectedExercises.remove(at: index)
-              } else {
-                  selectedExercises.append(selected)
-              }
+            selectedExercises.remove(at: index)
+        } else {
+            selectedExercises.append(selected)
+        }
     }
     
     func createExercise(name: String) {
         listOfExercises.append(Exercises(name: name))
+        CacheManager.shared.userExercises.append(Exercises(name: name))
     }
     
 }
 
 
-struct Exercises: Codable, Identifiable {
-   
-    var id: String {
-        name
-    }
-    var name: String
-    
-}
+
 
 
