@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     init() {
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .phone)
@@ -31,13 +31,9 @@ struct ContentView: View {
                     Image(systemName: "chart.line.uptrend.xyaxis")
                 }
 
-            AboutView()
+            SettingsView()
                 .tabItem {
-                    if Double(UIDevice.current.systemVersion) ?? 0 >= 16.0 {
-                        Image(systemName: "info.square")
-                    } else {
-                        Image(systemName: "info")
-                    }
+                    Image(systemName: "gearshape")
                 }
         }
         .tabViewStyle(.automatic)
@@ -47,7 +43,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
             .preferredColorScheme(.light)
     }
     

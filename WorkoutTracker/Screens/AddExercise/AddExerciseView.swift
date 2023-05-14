@@ -22,7 +22,6 @@ struct AddExerciseView: View {
     var body: some View {
         VStack {
             if viewModel.isLoading == .success {
-                Spacer(minLength: 16)
                 List {
                     ForEach(viewModel.exercises) { exercise in
                         let isSelected = viewModel.selectedExercises.contains(where: { $0.id == exercise.id })
@@ -44,6 +43,7 @@ struct AddExerciseView: View {
                                         .foregroundColor(.white)
                                 }
                             }
+                            .padding(.bottom, exercise == viewModel.exercises.last ? 48 : 0)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
                     }
@@ -84,6 +84,7 @@ extension AddExerciseView {
                 action(viewModel.selectedExercises)
                 presentationMode.wrappedValue.dismiss()
                 viewModel.selectedExercises.removeAll()
+                viewModel.searchText.removeAll()
             } label: {
                 Text("Add \(viewModel.selectedExercises.count) exercise")
                     .frame(maxWidth: .infinity, maxHeight: 8)

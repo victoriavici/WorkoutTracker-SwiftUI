@@ -15,8 +15,6 @@ struct LogWorkoutView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: LogWorkoutViewModel
 
-    var addExerciseViewModel = AddExerciseViewModel()
-
     // MARK: - Body
     
     var body: some View {
@@ -111,8 +109,15 @@ struct LogWorkoutView: View {
                         hideKeyboard()
                     } label: {
                         Text("Submit")
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(3)
                     }
-                    
+                    .padding(8)
+                    .padding(.horizontal, 14)
                 }
             }
         }
@@ -125,13 +130,14 @@ private extension LogWorkoutView {
     
     func header(exercise: Exercise) -> some View {
         VStack(alignment: .leading) {
-            HStack(spacing: 150) {
+            HStack {
                 Text(exercise.name)
                     .font(.headline)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
                 Button {
                     withAnimation() {
+                        hideKeyboard()
                         viewModel.removeExercise(exercise: exercise)
                     }
                 } label: {
@@ -167,9 +173,18 @@ private extension LogWorkoutView {
             Text("\(Int(index))")
                 .frame(width: 48)
             
-            Text("-")
-                .frame(maxWidth: .infinity)
-            
+            if let exercise = viewModel.previousExercises.first(where: { exer in
+                exer.name == exercise.name
+            }),
+               let sety = exercise.sets[safe: index - 1] {
+                Text(String(format: "%.2f%@", viewModel.isWeightInKg ? sety.weight : sety.weight * C.kgToLbsMultiplayer, viewModel.isWeightInKg ? "kg" : "lbs") + " x \(sety.reps)")
+
+                    .frame(maxWidth: .infinity)
+            } else {
+
+                Text("-")
+                    .frame(maxWidth: .infinity)
+            }
             let exIndex = getIndexExercise(exercise: exercise)
             
             TextField(viewModel.isWeightInKg ? "kg" : "lbs", value: $viewModel.allEx[exIndex].sets[index - 1].weight, format: .number)
@@ -227,7 +242,7 @@ private extension LogWorkoutView {
                 .background(Color.blue)
                 .cornerRadius(3)
             
-            NavigationLink(destination: AddExerciseView(viewModel: addExerciseViewModel) { exercises in viewModel.addExercise(selected: exercises)}, label: {})
+            NavigationLink("", destination:  NavigationLazyView(AddExerciseView(viewModel: AddExerciseViewModel()) { exercises in viewModel.addExercise(selected: exercises)}))
                 .opacity(0)
         }
     }

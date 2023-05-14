@@ -45,12 +45,13 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
                         self.isLoading = .success
                     }
                 }, receiveValue: { exercises in
+                    var exercises = exercises
+                    exercises.data += CacheManager.shared.userExercises
                     self.listOfExercises = exercises.data.reduce(into: []) { result, element in
                         if !result.contains(element) {
                             result.append(element)
                         }
                     }
-                    self.listOfExercises += CacheManager.shared.userExercises
                     self.listOfExercises.sort { exercises1, exercises2 in
                         exercises1.name < exercises2.name
                     }
@@ -61,7 +62,7 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
 
     private func updateExercises() {
         exercises = searchText.isEmpty ? listOfExercises : listOfExercises.filter {
-            $0.name.localizedCaseInsensitiveContains(searchText)
+            $0.name.lowercased().contains(searchText.lowercased())
         }
     }
     

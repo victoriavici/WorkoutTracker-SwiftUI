@@ -10,8 +10,7 @@ import Foundation
 class ExerciseStatsViewModel: ObservableObject {
     
     var workouts = CacheManager.shared.workouts
-    let weight = CacheManager.shared.isWeightInKg ? "kg" : "lbs"
-   
+    var isWeightInKg = CacheManager.shared.isWeightInKg
     
     func getExercises(name: String) -> [Exercise] {
         var exercises: [Exercise] = []
@@ -34,7 +33,8 @@ class ExerciseStatsViewModel: ObservableObject {
                 }
             }
         }
-        return "\(maxWeight)\(weight)"
+        return String(format: "%.2f", isWeightInKg ? maxWeight : maxWeight * C.kgToLbsMultiplayer) + (isWeightInKg ? "kg" : "lbs")
+
     }
     
     func getBestSet(name: String) -> String {
@@ -48,7 +48,8 @@ class ExerciseStatsViewModel: ObservableObject {
                 }
             }
         }
-        return String("\(maxWeight)\(weight) x \(maxReps)")
+        return String(format: "%.2f", isWeightInKg ? maxWeight : maxWeight * C.kgToLbsMultiplayer) + (isWeightInKg ? "kg" : "lbs") + " x \(maxReps)"
+
     }
     
     func getBestSession(name: String) -> String {
@@ -62,7 +63,8 @@ class ExerciseStatsViewModel: ObservableObject {
                 maxWeight = weight
             }
         }
-        return String("\(maxWeight)\(weight) ")
+        return String(format: "%.2f%@", isWeightInKg ? maxWeight : maxWeight * C.kgToLbsMultiplayer, isWeightInKg ? "kg" : "lbs")
+
     }
     
     func getSessionData(name: String) -> [Double]{
@@ -72,7 +74,7 @@ class ExerciseStatsViewModel: ObservableObject {
             exercise.sets.forEach() { set in
                 weight += set.weight * Double(set.reps)
             }
-            data.append(weight)
+            data.append(isWeightInKg ? weight : weight * C.kgToLbsMultiplayer)
         }
         return data
     }
@@ -86,7 +88,7 @@ class ExerciseStatsViewModel: ObservableObject {
                     weight = set.weight
                 }
             }
-            data.append(weight)
+            data.append(isWeightInKg ? weight : weight * C.kgToLbsMultiplayer)
         }
         return data
     }
@@ -100,7 +102,7 @@ class ExerciseStatsViewModel: ObservableObject {
                     weight = set.weight * Double(set.reps)
                 }
             }
-            data.append(weight)
+            data.append(isWeightInKg ? weight : weight * C.kgToLbsMultiplayer)
         }
         return data
     }

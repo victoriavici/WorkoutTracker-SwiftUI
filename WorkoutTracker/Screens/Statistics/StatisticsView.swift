@@ -23,7 +23,7 @@ struct StatisticsView: View {
                 HStack {
                     Text("Total volume")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(String(format: "%.2f", viewModel.getTotalVolume()))
+                    Text(viewModel.getTotalVolumeString())
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 HStack {

@@ -11,22 +11,15 @@ import os
 struct WorkoutView: View {
     
     @ObservedObject var viewModel = WorkoutViewModel()
-    var logWorkoutViewModel: LogWorkoutViewModel
-    var logWorkoutView: LogWorkoutView
-    
+ 
     // MARK: - Body
-    init() {
-        self.logWorkoutViewModel = LogWorkoutViewModel()
-        self.logWorkoutView = LogWorkoutView(viewModel: logWorkoutViewModel)
-        
-    }
     
     var body: some View {
         
         NavigationView {
             VStack {
                 VStack() {
-                    NavigationLink(destination: logWorkoutView) {
+                    NavigationLink(destination: NavigationLazyView(LogWorkoutView(viewModel: LogWorkoutViewModel()))) {
                         Text("Start an empty workout")
                             .frame(maxWidth: .infinity, maxHeight: 20)
                             .font(.title2)
@@ -58,8 +51,8 @@ struct WorkoutView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("Workout", displayMode: .inline)
             .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .top)
-            .navigationBarItems(trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gearshape")
-            })
+            //.navigationBarItems(trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gearshape")
+           // })
         }
     }
 }

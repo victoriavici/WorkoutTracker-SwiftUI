@@ -24,6 +24,8 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         }
     }
     @Published var isWeightInKg = CacheManager.shared.isWeightInKg
+    @Published var workouts = CacheManager.shared.workouts
+    @Published var previousExercises: [Exercise] = []
     
     init() {
         subscribe()
@@ -32,6 +34,8 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     func subscribe() {
         CacheManager.shared.isWeightInKgPublisher
             .assign(to: &$isWeightInKg)
+        CacheManager.shared.workoutsPublisher
+            .assign(to: &$workouts)
     }
     
     func setInWorkout() {
@@ -85,6 +89,7 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     func addExercise(selected: [Exercises]) {
         selected.forEach { item in
             allEx.append(Exercise(name: item.name))
+            getPrevious(name: item.name)
         }
     }
     
@@ -99,7 +104,7 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
     }
     
     func saveWorkout() {
-        if !CacheManager.shared.isWeightInKg {
+        if !isWeightInKg {
             for i in 0..<allEx.count {
                 var exercise = allEx[i]
                 for j in 0..<exercise.sets.count {
@@ -121,6 +126,18 @@ class LogWorkoutViewModel: ObservableObject, Identifiable {
         let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
+    
+    func getPrevious(name: String) {
+        for workout in workouts {
+            for exercise in workout.allEx {
+                if exercise.name == name {
+                    previousExercises.append(exercise)
+                    return
+                }
+            }
+        }
+    }
+
 }
 
 enum Status: String {

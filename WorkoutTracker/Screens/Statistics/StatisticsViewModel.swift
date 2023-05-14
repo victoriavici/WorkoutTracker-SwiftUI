@@ -12,6 +12,7 @@ import SwiftUICharts
 class StatisticsViewModel: ObservableObject {
     
     @Published var workouts = CacheManager.shared.workouts
+    @Published var isWeightInKg = CacheManager.shared.isWeightInKg
     
     init() {
         subscribe()
@@ -20,6 +21,8 @@ class StatisticsViewModel: ObservableObject {
     func subscribe() {
         CacheManager.shared.workoutsPublisher
             .assign(to: &$workouts)
+        CacheManager.shared.isWeightInKgPublisher
+            .assign(to: &$isWeightInKg)
     }
     
     func getTotalVolume() -> Double {
@@ -31,11 +34,15 @@ class StatisticsViewModel: ObservableObject {
                 }
             }
         }
-        return volume
+        return isWeightInKg ? volume : volume * C.kgToLbsMultiplayer
+    }
+    
+    func getTotalVolumeString() -> String {
+        String(format: "%.2f", getTotalVolume()) + (isWeightInKg ? "kg" : "lbs")
     }
     
     func getAvgVolume() -> String {
-        String(format: "%.2f", getTotalVolume()/Double(workouts.count))
+        String(format: "%.2f", getTotalVolume()/Double(workouts.count)) + (isWeightInKg ? "kg" : "lbs")
     }
     
     func getAvgDuration() -> String{

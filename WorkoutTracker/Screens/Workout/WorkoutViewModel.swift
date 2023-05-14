@@ -63,7 +63,7 @@ class WorkoutViewModel: ObservableObject, Identifiable {
         case 13..<18:
             return "Afternoon Training"
         case 18..<21:
-            return "Lunch Training"
+            return "Evening Training"
         case 21..<24:
             return "Night Training"
         case 0..<6:

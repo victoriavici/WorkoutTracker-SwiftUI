@@ -9,8 +9,10 @@ import GoodRequestManager
 import GoodExtensions
 import Combine
 import Alamofire
+import GRCompatible
 
 class RequestManager: RequestManagerType {
+    
     func fetchData() -> AnyPublisher<ExercisesResponse, Error> {
         let endpoint = Endpoint.exercise
         return session.request(endpoint: endpoint)
@@ -26,23 +28,17 @@ class RequestManager: RequestManagerType {
     // MARK: - Initialization
     
     init(baseURL: ApiServer) {
+        GRSessionConfiguration.logLevel = .none
+        
         session = GRSession(
             baseURL: baseURL,
-            configuration: .default
+            configuration: GRSessionConfiguration(
+                urlSessionConfiguration: .ephemeral,
+                interceptor: nil,
+                serverTrustManager: nil,
+                eventMonitors: [GRSessionLogger()]
+            )
         )
     }
-}
-
-enum AppError: Error, Equatable {
-
-    case af(AFError)
-
-    static func == (lhs: AppError, rhs: AppError) -> Bool {
-        switch (lhs, rhs) {
-        case (.af(let lError), .af(let rError)):
-            return lError.localizedDescription == rError.localizedDescription
-        }
-    }
-
-}
     
+}
