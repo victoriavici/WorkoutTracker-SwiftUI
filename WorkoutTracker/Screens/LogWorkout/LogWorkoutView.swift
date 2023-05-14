@@ -278,7 +278,7 @@ private extension LogWorkoutView {
     
     func hideKeyboard() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.endEditing(true)
-        keyboardIsActive.toggle()
+        keyboardIsActive = false
     }
     
 }

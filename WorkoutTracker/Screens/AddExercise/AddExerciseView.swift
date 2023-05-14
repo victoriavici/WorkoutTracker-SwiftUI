@@ -14,6 +14,9 @@ struct AddExerciseView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: AddExerciseViewModel
     @State var showingAlert = false
+    @Environment(\.dismissSearch) private var dismissSearch
+    @Environment(\.isSearching) var isSearching
+
     
     let action: ([Exercises]) -> Void
     
@@ -82,11 +85,11 @@ extension AddExerciseView {
         VStack {
             Button {
                 action(viewModel.selectedExercises)
+                dismissSearch()
                 presentationMode.wrappedValue.dismiss()
                 viewModel.selectedExercises.removeAll()
                 viewModel.searchText.removeAll()
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-
+                dismissSearch.callAsFunction()
             } label: {
                 Text("Add \(viewModel.selectedExercises.count) exercise")
                     .frame(maxWidth: .infinity, maxHeight: 8)
