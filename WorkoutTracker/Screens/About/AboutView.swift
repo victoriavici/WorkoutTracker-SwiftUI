@@ -89,10 +89,14 @@ struct Page: Identifiable, Equatable {
 
 struct Pages: Equatable {
      let pages: [Page] = [
-        .init(name: "Settings", description: "Set your preffered units of weight and distance", imageUrl: "settings", tag: 0),
-        .init(name: "druha", description: "druha", imageUrl: "", tag: 1),
-        .init(name: "tretia", description: "tretia", imageUrl: "", tag: 2),
-    ]
+        .init(name: "Workouts", description: "Start a new workout or browse through your workout history", imageUrl: "workout", tag: 0),
+        .init(name: "Log your workout", description: "Track your workout by logging the number of reps and weights for each set of exercises", imageUrl: "logworkout", tag: 1),
+        .init(name: "Add exercises", description: "Add exercises to your current workout", imageUrl: "add", tag: 2),
+        .init(name: "Create exercise", description: "If you can't find the exercise you are looking for, add it to your list", imageUrl: "create", tag: 3),
+        .init(name: "Statistics", description: "Review the statistics of your workout", imageUrl: "stats", tag: 4),
+        .init(name: "Exercise stats", description: "Review the statistics and graphs of exercises", imageUrl: "exStats", tag: 5),
+        .init(name: "Settings", description: "Set your preffered units of weight and distance", imageUrl: "settings", tag: 6)
+     ]
 }
 
 

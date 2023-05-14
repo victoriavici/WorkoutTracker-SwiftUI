@@ -39,10 +39,10 @@ struct WorkoutView: View {
                     
                 }
                 List {
-                    ForEach (viewModel.workouts) { workout in
+                    ForEach (viewModel.workouts.reversed()) { workout in
                         historyLog(workout: workout)
                             .padding(.vertical, 8)
-                            .padding(.bottom, workout == viewModel.workouts.last ? 48 : 0)
+                            .padding(.bottom, workout == viewModel.workouts.first ? 48 : 0)
                         
                     }
                 }

@@ -50,7 +50,7 @@ class StatisticsViewModel: ObservableObject {
         workouts.forEach() { workout in
             duration += workout.endTime.timeIntervalSince(workout.startTime)
         }
-        return timeToString(interval: duration)
+        return timeToString(interval: duration/Double(workouts.count))
     }
     
     func getMainExercises() -> [(String, Int)] {

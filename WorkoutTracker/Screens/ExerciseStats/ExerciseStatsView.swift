@@ -88,6 +88,7 @@ struct ExerciseStatsView: View {
             }
             .padding()
         }
+        .navigationBarTitle(name)
     }
 }
 

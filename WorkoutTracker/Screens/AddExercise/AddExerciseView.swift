@@ -85,6 +85,8 @@ extension AddExerciseView {
                 presentationMode.wrappedValue.dismiss()
                 viewModel.selectedExercises.removeAll()
                 viewModel.searchText.removeAll()
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
             } label: {
                 Text("Add \(viewModel.selectedExercises.count) exercise")
                     .frame(maxWidth: .infinity, maxHeight: 8)
