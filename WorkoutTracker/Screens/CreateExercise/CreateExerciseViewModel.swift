@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ ViewModel pre CreateExerciseView obsahujúci nazov
+ */
 class CreateExerciseViewModel: ObservableObject {
     
     @Published var name: String = ""

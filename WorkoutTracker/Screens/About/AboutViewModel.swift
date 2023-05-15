@@ -6,9 +6,9 @@
 //
 
 import Foundation
-
+/**
+ ViewModel ku AboutView
+ */
 class AboutViewModel: ObservableObject {
-    
-    @Published var current = 1
     
 }

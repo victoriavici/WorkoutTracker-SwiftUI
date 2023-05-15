@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
-
+/**
+ Screena na značenie aktuálne vykonávanom workoute
+ */
 struct LogWorkoutView: View {
     
     // MARK: - Variables
@@ -22,24 +24,9 @@ struct LogWorkoutView: View {
         VStack(alignment: .leading, spacing: 5) {
             
             HStack(alignment: .center, spacing: 28) {
-                VStack {
-                    Text("Time")
-                    Text(String(viewModel.time))
-                }
-                .frame(width: 72)
-                .padding()
-                VStack {
-                    Text("Volume")
-                    Text(String(viewModel.volume))
-                }
-                .frame(width: 72)
-                .padding()
-                VStack {
-                    Text("Sets")
-                    Text(String(viewModel.sets))
-                }
-                .frame(width: 72)
-                .padding()
+                currentWorkoutInfo(text: "Time", result: viewModel.time)
+                currentWorkoutInfo(text: "Volume", result: String(viewModel.volume))
+                currentWorkoutInfo(text: "Sets", result: String(viewModel.sets))
             }
             .padding(.horizontal, 24)
             
@@ -73,7 +60,6 @@ struct LogWorkoutView: View {
                     .listRowSeparator(.hidden)
                     .id(0)
                     .padding(.vertical)
-                    
                 }
                 .listStyle(.plain)
                 .onAppear() {
@@ -86,11 +72,12 @@ struct LogWorkoutView: View {
         .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("Log workout", displayMode: .inline)
         .onAppear {
-            if !viewModel.inWorkout {
-                viewModel.setInWorkout()
+            if CacheManager.shared.currentWorkout == nil {
+               // viewModel.setInWorkout()
                 viewModel.setStartTime()
+            } else {
+                viewModel.resumeWorkout()
             }
-            
             viewModel.updateTime()
             viewModel.timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common)
                 .autoconnect()
@@ -127,7 +114,33 @@ struct LogWorkoutView: View {
 // MARK: - Components
 
 private extension LogWorkoutView {
+    /**
+     Služi na zobrazenie workout infa
+     
+     Parameters:
+     - text: String, result: String
+     
+     Returns:
+     - some View
+     */
+    func currentWorkoutInfo(text: String, result: String) -> some View {
+        VStack {
+            Text(text)
+            Text(result)
+        }
+        .frame(width: 72)
+        .padding()
+    }
     
+    /**
+     Služi na zobrazenie hlavičky cviku
+     
+     Parameters:
+     - exercise: Exercise
+     
+     Returns:
+     - some View
+     */
     func header(exercise: Exercise) -> some View {
         VStack(alignment: .leading) {
             HStack {
@@ -168,6 +181,15 @@ private extension LogWorkoutView {
         .padding(.vertical)
     }
     
+    /**
+     Zobrazenie riadku setu
+     
+     Parameters:
+     - exercise: Exercise, index: Int
+     
+     Returns:
+     - some View
+     */
     func setRow(exercise: Exercise, index: Int) -> some View {
         HStack(spacing: 8) {
             Text("\(Int(index))")
@@ -178,10 +200,8 @@ private extension LogWorkoutView {
             }),
                let sety = exercise.sets[safe: index - 1] {
                 Text(String(format: "%.2f%@", viewModel.isWeightInKg ? sety.weight : sety.weight * C.kgToLbsMultiplayer, viewModel.isWeightInKg ? "kg" : "lbs") + " x \(sety.reps)")
-
                     .frame(maxWidth: .infinity)
             } else {
-
                 Text("-")
                     .frame(maxWidth: .infinity)
             }
@@ -209,7 +229,15 @@ private extension LogWorkoutView {
         .frame(height: 24)
         
     }
-    
+    /**
+     Funkcia na zobrazenie buttona pre pridanie setu
+     
+     Parameters:
+     - exercise: Exercise, index: Int
+     
+     Returns:
+     - some View
+     */
     func addSetButton(exercise: Exercise) -> some View {
         VStack {
             Button {
@@ -230,7 +258,12 @@ private extension LogWorkoutView {
         .frame(height: 44)
     }
     
-    
+    /**
+     Button pre pridanie cviku
+     
+     Returns:
+     - some View
+     */
     func addExercise() -> some View {
         ZStack {
             Text("+ ADD EXERCISE")
@@ -247,16 +280,25 @@ private extension LogWorkoutView {
         }
     }
     
+    /**
+     Button pre zrušenie alebo uloženie workoutu
+     
+     Parameters:
+     - text: String, action: @escaping () -> Void
+     
+     Return:
+     - some View
+     */
     func addDiscardAndFinishButton(text: String, action: @escaping () -> Void) -> some View {
         VStack {
             Button {
                 action()
-                viewModel.setInWorkout()
                 if text == "Finish" {
                     viewModel.saveWorkout()
                 }
                 viewModel.clearWorkout()
                 presentationMode.wrappedValue.dismiss()
+                CacheManager.shared.currentWorkout = nil
             } label: {
                 Text(text)
                     .frame(maxWidth: .infinity, maxHeight: 8)
@@ -271,11 +313,21 @@ private extension LogWorkoutView {
         .buttonStyle(BorderlessButtonStyle())
         
     }
-    
+    /**
+     Funkcia pre získanie indexu cviku
+     
+     Parameters:
+     - exercise: Exercise
+     
+     Returns:
+     - Int
+     */
     func getIndexExercise(exercise: Exercise) -> Int {
         return viewModel.allEx.firstIndex(where: {exercise.id == $0.id}) ?? 0
     }
-    
+    /**
+     Funkcia skrýva klávsenicu
+     */
     func hideKeyboard() {
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.endEditing(true)
         keyboardIsActive = false

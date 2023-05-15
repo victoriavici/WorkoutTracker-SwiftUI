@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Konštanta pre prevod kg fo lbs
+ */
 enum C {
     
     static let kgToLbsMultiplayer = 2.20462262

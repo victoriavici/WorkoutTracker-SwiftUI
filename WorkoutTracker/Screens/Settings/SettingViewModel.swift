@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Trieda slúži sledovanie a upozorňovanie na zmeny v hodnotách hmotnosti a vzdialenosti a ukladanie ich do CacheManager
+ */
 class SettingViewModel: ObservableObject {
     
     @Published var weight : Weight = CacheManager.shared.isWeightInKg ? .kg : .lbs {

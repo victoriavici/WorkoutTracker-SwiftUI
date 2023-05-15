@@ -15,6 +15,9 @@ protocol RequestManagerType: AnyObject {
 
 }
 
+/**
+Odpoveď zo servera obsahujúcu údaje o cvičeniach.
+ */
 struct ExercisesResponse: GRDecodable {
     
     var data: [Exercises]

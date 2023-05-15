@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Enum pre typ jednotiek váhy
+ */
 enum Weight: String {
     
     case kg
@@ -14,6 +17,9 @@ enum Weight: String {
     
 }
 
+/**
+ Enum pre typ jednotiek vzdialenosti
+ */
 enum Distance: String {
     
     case km

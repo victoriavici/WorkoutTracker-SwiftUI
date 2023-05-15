@@ -7,12 +7,22 @@
 
 import SwiftUI
 
+/**
+Spúšťacia screena
+ */
 struct MainView: View {
     
+    /**
+    Nastavenie vzhľadu tabBaru
+     */
     init() {
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .phone)
     }
 
+    /**
+    Tabbar obsahuje workoutView, StatisticsView a SettingView.
+    Podľa verzie systému sa pre každé view zvolia obrázky.
+     */
     
     var body: some View {
         

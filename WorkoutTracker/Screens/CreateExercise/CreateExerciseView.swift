@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
-
+/**
+ Screena slúži na pridanie nového cviku
+ */
 struct CreateExerciseView: View {
     
     @Environment(\.presentationMode) var presentationMode
@@ -14,6 +16,11 @@ struct CreateExerciseView: View {
     
     let action: (String) -> Void
     
+    // MARK: - Body
+    
+    /**
+    Obsahuje textfield na napísanie mena nového cviku a button na pridanie
+     */
     var body: some View {
         
         VStack {

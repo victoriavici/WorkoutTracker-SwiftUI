@@ -11,8 +11,17 @@ import Combine
 import Alamofire
 import GRCompatible
 
+/**
+ Trieda je zodpovedná za správu požiadaviek na server a získavanie údajov cvičení.
+ */
 class RequestManager: RequestManagerType {
     
+    /**
+     Funkcia vykoná požiadavku na server na získanie údajov cvičení
+     
+     Returns:
+     - AnyPublisher<ExercisesResponse, Error>
+     */
     func fetchData() -> AnyPublisher<ExercisesResponse, Error> {
         let endpoint = Endpoint.exercise
         return session.request(endpoint: endpoint)
@@ -27,6 +36,12 @@ class RequestManager: RequestManagerType {
     
     // MARK: - Initialization
     
+    /**
+     Inicializácia triedy RequestManager s  baseURL
+     
+     Parameters:
+     - baseURL: ApiServer
+     */
     init(baseURL: ApiServer) {
         GRSessionConfiguration.logLevel = .none
         

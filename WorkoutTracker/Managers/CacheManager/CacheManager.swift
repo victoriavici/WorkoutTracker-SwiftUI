@@ -9,6 +9,9 @@ import Foundation
 import GoodPersistence
 import Combine
 
+/**
+ Trieda slúži na uchovávanie a správu rôznych údajov v aplikácii.
+ */
 class CacheManager {
     
     static let shared: CacheManager = .init()
@@ -41,4 +44,14 @@ class CacheManager {
         userExercises.append(exercise)
     }
     
+    private var currentWorkoutSubject = CurrentValueSubject<Workout?, Never>(nil)
+
+       var currentWorkout: Workout? {
+           get { currentWorkoutSubject.value }
+           set { currentWorkoutSubject.send(newValue) }
+       }
+
+    var currentWorkoutPublisher: AnyPublisher<Workout?, Never> {
+        currentWorkoutSubject.eraseToAnyPublisher()
+    }
 }

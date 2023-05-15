@@ -2,12 +2,15 @@
 //  AppError.swift
 //  WorkoutTracker
 //
-//  Created by Sebastian Mraz on 12/05/2023.
+//  Created by Victoria Gáliková on 12/05/2023.
 //
 
 import Foundation
 import Alamofire
 
+/**
+ Enum slúži na reprezentáciu chybových stavov alebo chýb, ktoré môžu nastať v aplikácii
+ */
 enum AppError: Error, Equatable {
 
     case af(AFError)

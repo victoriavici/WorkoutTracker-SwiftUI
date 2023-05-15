@@ -7,19 +7,24 @@
 
 import SwiftUI
 
+/**
+ Screena slúži na nastavenie jednotiek váhy a vzdialenosti v aplikácii
+ */
 struct SettingsView: View {
     
     @ObservedObject var settingsView = SettingViewModel()
     @State var showModal = false
+    
      // MARK: - Body
     
+    /**
+    Obsahuje picker pre jednotky vzdialenosti  a vahy . Taktiež aj App Guide
+     */
     var body: some View {
         NavigationView {
             VStack(spacing: 8) {
                 
-                Text("Weight")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                header(text: "Weight")
                     .padding(.top, 8)
                 Picker("Weight", selection: $settingsView.weight) {
                     Text("KG")
@@ -29,9 +34,7 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
                 
-                Text("Distance")
-                    .font(.headline)
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                header(text: "Distance")
                 Picker("Distance", selection: $settingsView.distance) {
                     Text("KILOMETERS")
                         .tag(Distance.km)
@@ -39,6 +42,7 @@ struct SettingsView: View {
                         .tag(Distance.mi)
                 }
                 .pickerStyle(.segmented)
+                
                 Spacer()
                 
                 Button {
@@ -55,8 +59,6 @@ struct SettingsView: View {
                         }
                 }
                 .padding()
-                
-                
             }
             .padding(.horizontal)
             .navigationBarTitle("Settings", displayMode: .inline)
@@ -64,7 +66,24 @@ struct SettingsView: View {
         }
     }
 }
-// MARK: - Components
+
+private extension SettingsView {
+    
+    /**
+     Funkcie na zobrazenie hlavičky
+     
+     Parameters:
+     - text: String
+     
+     Returns:
+     - some View
+     */
+    func header(text: String) -> some View {
+        Text(text)
+            .font(.headline)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+    }
+}
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {

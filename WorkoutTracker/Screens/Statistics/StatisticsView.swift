@@ -6,38 +6,24 @@
 //
 
 import SwiftUI
-
+/**
+ Screena poskytuje štatistiky o workoutoch a hlavné cviky
+ */
 struct StatisticsView: View {
     
     @ObservedObject var viewModel = StatisticsViewModel()
-    
+    /**
+     Zobrazenie štatistík a hlavných cvikoch
+     */
     var body: some View {
         NavigationView {
             VStack(spacing: 8) {
-                HStack {
-                    Text("Workouts")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(String(viewModel.workouts.count))
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                HStack {
-                    Text("Total volume")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(viewModel.getTotalVolumeString())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                HStack {
-                    Text("Avg. workouts volume")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(viewModel.getAvgVolume())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                HStack {
-                    Text("Avg. workouts duration")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(viewModel.getAvgDuration())
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
+                
+                statsRow(text: "Workouts", result: String(viewModel.workouts.count))
+                statsRow(text: "Total volume", result: viewModel.getTotalVolumeString())
+                statsRow(text: "Avg. workouts volume", result: viewModel.getAvgVolume())
+                statsRow(text: "Avg. workouts duration", result: viewModel.getAvgDuration())
+
                 Spacer()
                 Text("Main exercises")
                     .font(.headline)
@@ -58,8 +44,35 @@ struct StatisticsView: View {
     
 }
 
-extension StatisticsView {
-    
+// MARK: - Components
+
+private extension StatisticsView {
+    /**
+     Funcia zobrazuje názov štatistiky spolu s výsledkom
+     
+     Parameters:
+     - text: String, result: String
+     
+     Returns:
+     - some View
+     */
+    func statsRow(text: String, result: String) -> some View {
+        HStack {
+            Text(text)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(result)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+    /**
+     Funkcia slúži na zobrazenie cviku s počtom, koľkokŕat bol odcvičený
+     
+     Parameters:
+     - exercise: (name: String, count: Int)
+     
+     Returns:
+     - some View
+     */
     func exerciseLog(exercise: (name: String, count: Int)) -> some View {
         VStack {
             NavigationLink(destination: ExerciseStatsView(name: exercise.name)) {

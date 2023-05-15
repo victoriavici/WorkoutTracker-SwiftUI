@@ -8,19 +8,25 @@
 import SwiftUI
 import os
 
+/**
+ Screena slúži na zobrazenie histórie a spustenie workoutu
+ */
 struct WorkoutView: View {
     
     @ObservedObject var viewModel = WorkoutViewModel()
  
     // MARK: - Body
     
+    /**
+     Zobrazenie všetkých vytvorených workoutov a buttonu na začatie workoutu.
+     */
     var body: some View {
         
         NavigationView {
             VStack {
                 VStack() {
                     NavigationLink(destination: NavigationLazyView(LogWorkoutView(viewModel: LogWorkoutViewModel()))) {
-                        Text("Start an empty workout")
+                        Text(viewModel.inWorkout == nil ? "Start an empty workout" : "Resume workout")
                             .frame(maxWidth: .infinity, maxHeight: 20)
                             .font(.title2)
                             .foregroundColor(.white)
@@ -62,7 +68,15 @@ struct WorkoutView: View {
 // MARK: - Components
 
 private extension WorkoutView {
-    
+    /**
+     Funkcia na zobrazenie info o cviku
+     
+     Parameters:
+     - workout: Workout
+     
+     Returns:
+     - some View
+     */
     func historyLog(workout: Workout) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(alignment: .leading) {

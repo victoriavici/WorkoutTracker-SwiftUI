@@ -11,12 +11,18 @@ import Combine
 import Alamofire
 import Foundation
 
+/**
+ Enum reprezentujúci URL adresu servera.
+ */
 enum ApiServer: String {
 
     case base = "https://musclewiki.p.rapidapi.com/exercises"
 
 }
 
+/**
+ Enum koncových body na serveri
+ */
 enum Endpoint: GREndpointManager {
     var path: String {
         ""
@@ -36,11 +42,18 @@ enum Endpoint: GREndpointManager {
     ]}
 
     var encoding: ParameterEncoding { JSONEncoding.default }
-
+    
+    /**
+     Vytvorenie URL adresy z daného základného URL a aktuálneho koncového bodu.
+     
+     Parameters:
+     - baseURL: String
+     */
     func asURL(baseURL: String) throws -> URL {
         let url = try baseURL.asURL()
         return url
     }
+    
     var queryParameters: Parameters? {
           switch self {
           case .exercise:

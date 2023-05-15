@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/**
+ Generickým view typ, ktorý slúži na lenivú inizializáciu obsahu view.
+ */
 struct NavigationLazyView<Content: View>: View {
     
     let build: () -> Content

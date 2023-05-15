@@ -7,15 +7,21 @@
 
 import SwiftUI
 
+/**
+ Prievodca aplikáciou
+ */
 struct AboutView: View {
     
-    @ObservedObject var viewModel = AboutViewModel()
     let pages = Pages().pages
     @State var pageIndex = 0
     let dotAppearance = UIPageControl.appearance()
+     
+    // MARK: - Body
     
+    /**
+     Zobrazuje screenshoty aplikacie s popisom
+     */
     var body: some View {
-        
         NavigationView {
             TabView(selection: $pageIndex) {
                        ForEach(pages) { page in
@@ -36,31 +42,33 @@ struct AboutView: View {
                    }
                }
             .navigationBarTitle("About app", displayMode: .inline)
-        
         }
     
 }
+
+// MARK: - Components
+
 extension AboutView {
-    
-    func text(text: String) -> some View {
-        Text(text)
-            .padding(.top, 5.0)
-            .foregroundColor(Color.blue)
-    }
-    
+    /**
+     Funkcia slúži na zobrazenie obrázku obrazovky, nadpisu a popisu k nej
+     
+     Parameters:
+     - page: Page
+     
+     Returns:
+     - some View
+     */
     func pageView(page: Page) -> some View {
         VStack() {
             Image("\(page.imageUrl)")
                 .resizable()
                 .cornerRadius(30)
-               
                 .scaledToFit()
                 .padding()
                 .frame(maxHeight: 500)
                 .shadow(radius: 16)
                
-            
-            Text(page.name)
+            Text(page.title)
                 .font(.title)
                 .foregroundColor(.black)
             
@@ -68,37 +76,10 @@ extension AboutView {
                 .font(.subheadline)
                 .frame(width: 300)
                 .foregroundColor(.black)
-
         }
     }
     
-    
 }
-
-struct Page: Identifiable, Equatable {
-    
-    var id: String {
-        name
-    }
-    var name: String
-    var description: String
-    var imageUrl: String
-    var tag: Int
-    
-}
-
-struct Pages: Equatable {
-     let pages: [Page] = [
-        .init(name: "Workouts", description: "Start a new workout or browse through your workout history", imageUrl: "workout", tag: 0),
-        .init(name: "Log your workout", description: "Track your workout by logging the number of reps and weights for each set of exercises", imageUrl: "logworkout", tag: 1),
-        .init(name: "Add exercises", description: "Add exercises to your current workout", imageUrl: "add", tag: 2),
-        .init(name: "Create exercise", description: "If you can't find the exercise you are looking for, add it to your list", imageUrl: "create", tag: 3),
-        .init(name: "Statistics", description: "Review the statistics of your workout", imageUrl: "stats", tag: 4),
-        .init(name: "Exercise stats", description: "Review the statistics and graphs of exercises", imageUrl: "exStats", tag: 5),
-        .init(name: "Settings", description: "Set your preffered units of weight and distance", imageUrl: "settings", tag: 6)
-     ]
-}
-
 
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {

@@ -27,11 +27,19 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
     private var cancellables = Set<AnyCancellable>()
     @Published var isLoading: Status = .loading
     
+    // MARK: - Logic
+    
+    /**
+     Inicializácia
+     */
     init() {
         updateExercises()
         loadData()
     }
     
+    /**
+    Načítanie dát z requestManager a aktualizáciu  listOfExercises na základe týchto dát
+     */
     func loadData() {
         isLoading = .loading
         DispatchQueue.global(qos: .background).async {
@@ -60,12 +68,21 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
         }
     }
 
+    /**
+     Aktualizácia cvikov pri zadávaní textu do searchbaru
+     */
     private func updateExercises() {
         exercises = searchText.isEmpty ? listOfExercises : listOfExercises.filter {
             $0.name.lowercased().contains(searchText.lowercased())
         }
     }
     
+    /**
+     Funkcia slúži na označenie a odznačenie cvikov na pridanie
+     
+     Parameters:
+     - selected: Exercises
+     */
     func selectExercise(selected: Exercises) {
         if let index = selectedExercises.firstIndex(where: { $0.id == selected.id }) {
             selectedExercises.remove(at: index)
@@ -74,11 +91,26 @@ class AddExerciseViewModel: ObservableObject, Identifiable {
         }
     }
     
+    /**
+     Pridanie nového cviku
+     
+     Parameters:
+     - name: String
+     */
     func createExercise(name: String) {
         listOfExercises.append(Exercises(name: name))
         CacheManager.shared.userExercises.append(Exercises(name: name))
     }
     
+}
+/**
+ Enum statusu načítania api requestu
+ */
+enum Status: String {
+
+    case loading
+    case error
+    case success
 }
 
 

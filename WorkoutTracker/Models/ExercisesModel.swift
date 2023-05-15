@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+Struktura Exercises obsahuje názov cviku
+*/
 struct Exercises: Codable, Equatable, Identifiable {
     
     var id: String {
@@ -20,6 +23,10 @@ struct Exercises: Codable, Equatable, Identifiable {
     
 }
 
+/**
+ Exercise obsahuje meno a sety.
+ Struktura sets pozostáva z čísla setu, počtu opakovaní a kíl
+ */
 struct Exercise: Codable, Equatable, Identifiable {
     
     var id: String {
@@ -43,6 +50,9 @@ struct Exercise: Codable, Equatable, Identifiable {
     
 }
 
+/**
+ Workout obsahuje začiatočný čas, konečný čas a cviky, ktoré boli vykonané počas workoutu.
+ */
 struct Workout: Codable, Identifiable, Equatable {
     
     var id: Date {
@@ -50,14 +60,22 @@ struct Workout: Codable, Identifiable, Equatable {
     }
     var startTime: Date = Date()
     var allEx: [Exercise] = []
-    var endTime: Date = Date()
+    var endTime: Date? = nil
     
-    init(startTime: Date, endTime: Date, allEx: [Exercise]) {
+    init(startTime: Date, endTime: Date?, allEx: [Exercise]) {
         self.startTime = startTime
         self.allEx = allEx
         self.endTime = endTime
     }
-    
+    /**
+     Funcia slúži na získanie dátumu vo forme stringu
+     
+     Parameters:
+     - interval: Double
+     
+     Returns:
+     - String
+     */
     func timeToString(interval: Double) -> String {
         let hours = Int(interval / 3600)
         let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)

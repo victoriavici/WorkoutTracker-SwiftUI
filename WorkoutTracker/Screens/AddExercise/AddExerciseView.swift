@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/**
+ Screen pre pridanie cvikov do workoutu
+ */
 struct AddExerciseView: View {
     
     // MARK: - Variables
@@ -22,6 +25,9 @@ struct AddExerciseView: View {
     
     // MARK: - Body
     
+    /**
+     Zobrazenie všetkých názvov cvikoch po načítaní. Ak nie je načítané zobrazuje sa loading. Ak zlyhá tak sa zobrazí error
+     */
     var body: some View {
         VStack {
             if viewModel.isLoading == .success {
@@ -81,6 +87,12 @@ struct AddExerciseView: View {
 
 extension AddExerciseView {
     
+    /**
+     Funkcia pre zobrazenie buttonu na pridanie cvičenia
+     
+     Returns:
+     - some View
+     */
     func addButton() -> some View {
         VStack {
             Button {

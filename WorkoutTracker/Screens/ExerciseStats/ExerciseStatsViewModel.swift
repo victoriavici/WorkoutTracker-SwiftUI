@@ -9,10 +9,23 @@ import Foundation
 
 class ExerciseStatsViewModel: ObservableObject {
     
+    // MARK: - Variables
+    
     var workouts = CacheManager.shared.workouts
     var isWeightInKg = CacheManager.shared.isWeightInKg
     
-    func getExercises(name: String) -> [Exercise] {
+    // MARK: - Logic
+    
+    /**
+     Funkcia vracia cvik z predchádzajúcich workoutov s tým istým menom ako je cvik, pre ktorý sú zobrazované štatistiky,
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - [Exercise]
+     */
+    private func getExercises(name: String) -> [Exercise] {
         var exercises: [Exercise] = []
         workouts.forEach() { workout in
             workout.allEx.forEach() { exercise in
@@ -24,6 +37,15 @@ class ExerciseStatsViewModel: ObservableObject {
         return exercises
     }
     
+    /**
+     Funkcia vracia najväčšiu váhu cviku, ktorá bola doposiaľ zaznamenaná.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - String
+     */
     func getHeviestWeight(name: String) -> String {
         var maxWeight = 0.0
         getExercises(name: name).forEach() { exercise in
@@ -36,7 +58,15 @@ class ExerciseStatsViewModel: ObservableObject {
         return String(format: "%.2f", isWeightInKg ? maxWeight : maxWeight * C.kgToLbsMultiplayer) + (isWeightInKg ? "kg" : "lbs")
 
     }
-    
+    /**
+     Funkcia vracia najlepší set (weight x reps ), ktorý bol doposiaľ zaznamenaný.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - String
+     */
     func getBestSet(name: String) -> String {
         var maxWeight = 0.0
         var maxReps = 0
@@ -52,6 +82,15 @@ class ExerciseStatsViewModel: ObservableObject {
 
     }
     
+    /**
+     Funkcia vracia najlepší session, ktorý bol doposiaľ zaznamenaný.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - String
+     */
     func getBestSession(name: String) -> String {
         var maxWeight = 0.0
         getExercises(name: name).forEach() { exercise in
@@ -66,8 +105,16 @@ class ExerciseStatsViewModel: ObservableObject {
         return String(format: "%.2f%@", isWeightInKg ? maxWeight : maxWeight * C.kgToLbsMultiplayer, isWeightInKg ? "kg" : "lbs")
 
     }
-    
-    func getSessionData(name: String) -> [Double]{
+    /**
+     Funkcia vracia dáta pre sessions.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - [Double]
+     */
+    func getSessionData(name: String) -> [Double] {
         var data: [Double] = []
         getExercises(name: name).forEach() { exercise in
             var weight = 0.0
@@ -79,7 +126,16 @@ class ExerciseStatsViewModel: ObservableObject {
         return data
     }
     
-    func getHeaviestWeightData(name: String) -> [Double]{
+    /**
+     Funkcia vracia dáta pre najvačšiu váhu.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - [Double]
+     */
+    func getHeaviestWeightData(name: String) -> [Double] {
         var data: [Double] = []
         getExercises(name: name).forEach() { exercise in
             var weight = 0.0
@@ -93,7 +149,16 @@ class ExerciseStatsViewModel: ObservableObject {
         return data
     }
     
-    func getBestSetVolumeData(name: String) -> [Double]{
+    /**
+     Funkcia vracia dáta pre set volume.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - [Double]
+     */
+    func getBestSetVolumeData(name: String) -> [Double] {
         var data: [Double] = []
         getExercises(name: name).forEach() { exercise in
             var weight = 0.0
@@ -107,7 +172,16 @@ class ExerciseStatsViewModel: ObservableObject {
         return data
     }
     
-    func getTotalRepsData(name: String) -> [Double]{
+    /**
+     Funkcia vracia dáta pre total reps.
+     
+     Parameter:
+     - name: String
+     
+     Returns:
+     - [Double]
+     */
+    func getTotalRepsData(name: String) -> [Double] {
         var data: [Double] = []
         getExercises(name: name).forEach() { exercise in
             var reps = 0
