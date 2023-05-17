@@ -244,6 +244,7 @@
 		CA73E5C52A0E338F002E8513 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				CA2D1CDF29EE9B0800F7070D /* AboutView.swift */,
 				CAF581262A0D1E4B0077531C /* AboutViewModel.swift */,
 			);
 			path = About;
@@ -252,7 +253,6 @@
 		CA73E5C62A0E33C3002E8513 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				CA2D1CDF29EE9B0800F7070D /* AboutView.swift */,
 				CA2D1CE329EF042800F7070D /* SettingViewModel.swift */,
 				CA2D1CE529EF052D00F7070D /* SettingModel.swift */,
 				CA2D1CE129EECECC00F7070D /* SettingsView.swift */,
