@@ -5,6 +5,8 @@
 //  Created by Victoria Gáliková on 09/05/2023.
 //
 
+//inšpirované https://github.com/GoodRequest/GoodNetworking
+
 import Combine
 import Alamofire
 import GoodRequestManager

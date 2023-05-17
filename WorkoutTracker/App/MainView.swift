@@ -8,7 +8,7 @@
 import SwiftUI
 
 /**
-Spúšťacia screena
+Spúšťacia screena, ktorá pozostáva z tabbaru.
  */
 struct MainView: View {
     

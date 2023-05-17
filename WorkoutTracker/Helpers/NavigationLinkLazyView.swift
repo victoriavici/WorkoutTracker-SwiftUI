@@ -5,6 +5,8 @@
 //  Created by Victoria Gáliková on 13/05/2023.
 //
 
+//https://stackoverflow.com/questions/57594159/swiftui-navigationlink-loads-destination-view-immediately-without-clicking
+
 import SwiftUI
 
 /**

@@ -80,7 +80,7 @@ class StatisticsViewModel: ObservableObject {
     func getAvgDuration() -> String {
         var duration = 0.0
         workouts.forEach() { workout in
-            duration += workout.endTime!.timeIntervalSince(workout.startTime)
+            duration += workout.endTime?.timeIntervalSince(workout.startTime) ?? 0
         }
         return timeToString(interval: duration/Double(workouts.count))
     }
@@ -118,9 +118,10 @@ class StatisticsViewModel: ObservableObject {
      - String
      */
     private func timeToString(interval: Double) -> String {
-        let hours = Int(interval / 3600)
-        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
-        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
+        var intervalNotNan = interval.isNaN ? 0 : interval
+        let hours = Int(intervalNotNan/3600)
+        let minutes = Int(intervalNotNan.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(intervalNotNan.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 }

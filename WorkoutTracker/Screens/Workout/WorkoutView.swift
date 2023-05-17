@@ -49,16 +49,16 @@ struct WorkoutView: View {
                         historyLog(workout: workout)
                             .padding(.vertical, 8)
                             .padding(.bottom, workout == viewModel.workouts.first ? 48 : 0)
-                        
                     }
+                    .listSectionSeparator(.hidden, edges: .bottom)
+
                 }
                 .listStyle(.plain)
+                
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitle("Workout", displayMode: .inline)
             .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .top)
-            //.navigationBarItems(trailing: NavigationLink(destination: SettingsView()) { Image(systemName: "gearshape")
-           // })
         }
     }
 }

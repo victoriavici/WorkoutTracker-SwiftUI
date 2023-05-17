@@ -12,7 +12,7 @@ import SwiftUI
  */
 struct AboutView: View {
     
-    let pages = Pages().pages
+    let pages = Pages.shared.pages
     @State var pageIndex = 0
     let dotAppearance = UIPageControl.appearance()
      

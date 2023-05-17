@@ -59,7 +59,6 @@ struct LogWorkoutView: View {
                     }
                     .listRowSeparator(.hidden)
                     .id(0)
-                    .padding(.vertical)
                 }
                 .listStyle(.plain)
                 .onAppear() {
@@ -67,13 +66,13 @@ struct LogWorkoutView: View {
                         scrollview.scrollTo(0)
                     }
                 }
+                .padding(8)
             }
         }
         .frame(maxWidth: .infinity ,maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle("Log workout", displayMode: .inline)
         .onAppear {
             if CacheManager.shared.currentWorkout == nil {
-               // viewModel.setInWorkout()
                 viewModel.setStartTime()
             } else {
                 viewModel.resumeWorkout()

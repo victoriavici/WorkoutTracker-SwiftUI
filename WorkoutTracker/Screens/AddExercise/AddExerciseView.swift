@@ -16,7 +16,6 @@ struct AddExerciseView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: AddExerciseViewModel
-    @State var showingAlert = false
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment(\.isSearching) var isSearching
 
@@ -55,6 +54,7 @@ struct AddExerciseView: View {
                             .padding(.bottom, exercise == viewModel.exercises.last ? 48 : 0)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity ,alignment: .leading)
+                        .listSectionSeparator(.hidden, edges: .bottom)
                     }
                 }
                 .listStyle(.plain)
@@ -64,7 +64,7 @@ struct AddExerciseView: View {
                     addButton()
                 }
                 
-            } else if viewModel.isLoading == .loading{
+            } else if viewModel.isLoading == .loading {
                 ProgressView("Loading...")
             } else {
                 Text("Error!")

@@ -8,8 +8,8 @@
 import Foundation
 
 /**
-Struktura Exercises obsahuje názov cviku
-*/
+ Štruktura Exercises obsahuje názov cviku. Je potrebná pri získavaní dát zo servera.
+ */
 struct Exercises: Codable, Equatable, Identifiable {
     
     var id: String {
@@ -24,8 +24,8 @@ struct Exercises: Codable, Equatable, Identifiable {
 }
 
 /**
- Exercise obsahuje meno a sety.
- Struktura sets pozostáva z čísla setu, počtu opakovaní a kíl
+ Exercise obsahuje meno cviku a sety, ktoré má preddefinované dva.
+ Štruktúra sets pozostáva z čísla setu, počtu opakovaní a kíl.
  */
 struct Exercise: Codable, Equatable, Identifiable {
     
@@ -77,9 +77,10 @@ struct Workout: Codable, Identifiable, Equatable {
      - String
      */
     func timeToString(interval: Double) -> String {
-        let hours = Int(interval / 3600)
-        let minutes = Int(interval.truncatingRemainder(dividingBy: 3600) / 60)
-        let seconds = Int(interval.truncatingRemainder(dividingBy: 60))
+        let intervalNotNan = interval.isNaN ? 0 : interval
+        let hours = Int(intervalNotNan / 3600)
+        let minutes = Int(intervalNotNan.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(intervalNotNan.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     

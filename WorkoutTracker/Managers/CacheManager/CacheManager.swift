@@ -5,6 +5,9 @@
 //  Created by Victoria Gáliková on 01/05/2023.
 //
 
+
+//inšpirované https://github.com/GoodRequest/GoodPersistence/blob/main/GoodPersistence-Sample/GoodPersistence-Sample/Managers/CacheManager/CacheManager.swift
+
 import Foundation
 import GoodPersistence
 import Combine

@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- Štruktúra Page nadpis, popis, obrazok a tag
+ Štruktúra Page obsahuje nadpis, popis, obrazok a tag.
  */
 struct Page: Identifiable, Equatable {
     
@@ -23,9 +23,11 @@ struct Page: Identifiable, Equatable {
 }
 
 /**
- Pages obsahuje množinu stránok
+ Pages obsahuje množinu stránok, ktoré sa využívaju pri app guide.
  */
 struct Pages: Equatable {
+    static let shared: Pages = .init()
+    
      let pages: [Page] = [
         .init(title: "Workouts", description: "Start a new workout or browse through your workout history", imageUrl: "workout", tag: 0),
         .init(title: "Log your workout", description: "Track your workout by logging the number of reps and weights for each set of exercises", imageUrl: "logworkout", tag: 1),

@@ -42,7 +42,7 @@ class WorkoutViewModel: ObservableObject, Identifiable {
       - String
      */
     func getTime(workout: Workout) -> String {
-        return workout.timeToString(interval: workout.endTime!.timeIntervalSince(workout.startTime))
+        return workout.timeToString(interval: workout.endTime?.timeIntervalSince(workout.startTime) ?? 0)
     }
     
     /**
